@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<workspace>
+  <project>
+    <path>$WS_DIR$\..\..\..\util\bim_extflash\cc2640\iar\bim_extflash.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$\app\cc2650lp_app.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$\stack\cc2650lp_stack.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>bim_extflash</project>
+        <configuration>FlashOnly_LP</configuration>
+      </member>
+      <member>
+        <project>cc2650lp_stack</project>
+        <configuration>FlashROM</configuration>
+      </member>
+      <member>
+        <project>cc2650lp_app</project>
+        <configuration>FlashOnly_OAD</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>
+
+
