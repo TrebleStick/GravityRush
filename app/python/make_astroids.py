@@ -1,5 +1,13 @@
 import math, random
 from PIL import Image, ImageDraw
+#define basic colours
+black = (0,0,0)
+white=(255,255,255)
+trans = (0,0,0,0)
+#define dimesions
+img_sizeX = 500
+img_sizeY = 500
+img_dimesions = (img_sizeX,img_sizeY)
 
 # Code from https://stackoverflow.com/questions/8997099/algorithm-to-generate-random-2d-polygon
 def generatePolygon( ctrX, ctrY, aveRadius, irregularity, spikeyness, numVerts ) :
@@ -55,14 +63,6 @@ def clip(x, min, max) :
     else :             return x
 
 
-#define basic colours
-black = (0,0,0)
-white=(255,255,255)
-trans = (0,0,0,0)
-#define dimesions
-img_sizeX = 500
-img_sizeY = 500
-img_dimesions = (img_sizeX,img_sizeY)
 
 for i in range(0,10):
 
