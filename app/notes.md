@@ -2,12 +2,12 @@
 |Tick|        TODO    |
 |-------------------|
 |X| Randomly generate asteroid size/shape |
+|X| Randomly generate black hole size/shape |
 || Bluetooth input |
 || Movement of ship |
 || Generation of chunked levels |
 || High score calculated after each attempt|
 || Physics of the black hoes and astroid collision |
-|| Randomly generate black hole size/shape |
 
 ### Next Priority for well rounded solution
 |Tick|        TODO    |
