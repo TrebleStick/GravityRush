@@ -1,0 +1,367 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		374661D2220086CE0021FD31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374661D1220086CE0021FD31 /* AppDelegate.swift */; };
+		374661D4220086CE0021FD31 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 374661D3220086CE0021FD31 /* GameScene.sks */; };
+		374661D6220086CE0021FD31 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 374661D5220086CE0021FD31 /* Actions.sks */; };
+		374661D8220086CE0021FD31 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374661D7220086CE0021FD31 /* GameScene.swift */; };
+		374661DA220086CE0021FD31 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374661D9220086CE0021FD31 /* GameViewController.swift */; };
+		374661DD220086CE0021FD31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 374661DB220086CE0021FD31 /* Main.storyboard */; };
+		374661DF220086CF0021FD31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 374661DE220086CF0021FD31 /* Assets.xcassets */; };
+		374661E2220086CF0021FD31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 374661E0220086CF0021FD31 /* LaunchScreen.storyboard */; };
+		374661EA22008A990021FD31 /* SparkParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 374661E922008A990021FD31 /* SparkParticle.sks */; };
+		374661EC2200A46A0021FD31 /* SpaceRain.sks in Resources */ = {isa = PBXBuildFile; fileRef = 374661EB2200A46A0021FD31 /* SpaceRain.sks */; };
+		374661F12200AB9F0021FD31 /* Magic.sks in Resources */ = {isa = PBXBuildFile; fileRef = 374661EF2200AB9F0021FD31 /* Magic.sks */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		374661CE220086CE0021FD31 /* Gravity Rush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gravity Rush.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		374661D1220086CE0021FD31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		374661D3220086CE0021FD31 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		374661D5220086CE0021FD31 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		374661D7220086CE0021FD31 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		374661D9220086CE0021FD31 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		374661DC220086CE0021FD31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		374661DE220086CF0021FD31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		374661E1220086CF0021FD31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		374661E3220086CF0021FD31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		374661E922008A990021FD31 /* SparkParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SparkParticle.sks; sourceTree = "<group>"; };
+		374661EB2200A46A0021FD31 /* SpaceRain.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpaceRain.sks; sourceTree = "<group>"; };
+		374661EF2200AB9F0021FD31 /* Magic.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Magic.sks; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		374661CB220086CE0021FD31 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		374661C5220086CE0021FD31 = {
+			isa = PBXGroup;
+			children = (
+				374661D0220086CE0021FD31 /* Gravity Rush */,
+				374661CF220086CE0021FD31 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		374661CF220086CE0021FD31 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				374661CE220086CE0021FD31 /* Gravity Rush.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		374661D0220086CE0021FD31 /* Gravity Rush */ = {
+			isa = PBXGroup;
+			children = (
+				374661EF2200AB9F0021FD31 /* Magic.sks */,
+				374661D1220086CE0021FD31 /* AppDelegate.swift */,
+				374661D3220086CE0021FD31 /* GameScene.sks */,
+				374661E922008A990021FD31 /* SparkParticle.sks */,
+				374661EB2200A46A0021FD31 /* SpaceRain.sks */,
+				374661D5220086CE0021FD31 /* Actions.sks */,
+				374661D7220086CE0021FD31 /* GameScene.swift */,
+				374661D9220086CE0021FD31 /* GameViewController.swift */,
+				374661DB220086CE0021FD31 /* Main.storyboard */,
+				374661DE220086CF0021FD31 /* Assets.xcassets */,
+				374661E0220086CF0021FD31 /* LaunchScreen.storyboard */,
+				374661E3220086CF0021FD31 /* Info.plist */,
+			);
+			path = "Gravity Rush";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		374661CD220086CE0021FD31 /* Gravity Rush */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 374661E6220086CF0021FD31 /* Build configuration list for PBXNativeTarget "Gravity Rush" */;
+			buildPhases = (
+				374661CA220086CE0021FD31 /* Sources */,
+				374661CB220086CE0021FD31 /* Frameworks */,
+				374661CC220086CE0021FD31 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Gravity Rush";
+			productName = "Gravity Rush";
+			productReference = 374661CE220086CE0021FD31 /* Gravity Rush.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		374661C6220086CE0021FD31 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Ryan Armiger";
+				TargetAttributes = {
+					374661CD220086CE0021FD31 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 374661C9220086CE0021FD31 /* Build configuration list for PBXProject "Gravity Rush" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 374661C5220086CE0021FD31;
+			productRefGroup = 374661CF220086CE0021FD31 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				374661CD220086CE0021FD31 /* Gravity Rush */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		374661CC220086CE0021FD31 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				374661DD220086CE0021FD31 /* Main.storyboard in Resources */,
+				374661F12200AB9F0021FD31 /* Magic.sks in Resources */,
+				374661EA22008A990021FD31 /* SparkParticle.sks in Resources */,
+				374661D4220086CE0021FD31 /* GameScene.sks in Resources */,
+				374661DF220086CF0021FD31 /* Assets.xcassets in Resources */,
+				374661E2220086CF0021FD31 /* LaunchScreen.storyboard in Resources */,
+				374661EC2200A46A0021FD31 /* SpaceRain.sks in Resources */,
+				374661D6220086CE0021FD31 /* Actions.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		374661CA220086CE0021FD31 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				374661D8220086CE0021FD31 /* GameScene.swift in Sources */,
+				374661DA220086CE0021FD31 /* GameViewController.swift in Sources */,
+				374661D2220086CE0021FD31 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		374661DB220086CE0021FD31 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				374661DC220086CE0021FD31 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		374661E0220086CF0021FD31 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				374661E1220086CF0021FD31 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		374661E4220086CF0021FD31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		374661E5220086CF0021FD31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		374661E7220086CF0021FD31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3HQG9T963Q;
+				INFOPLIST_FILE = "Gravity Rush/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Imperial.Gravity-Rush";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		374661E8220086CF0021FD31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3HQG9T963Q;
+				INFOPLIST_FILE = "Gravity Rush/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Imperial.Gravity-Rush";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		374661C9220086CE0021FD31 /* Build configuration list for PBXProject "Gravity Rush" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				374661E4220086CF0021FD31 /* Debug */,
+				374661E5220086CF0021FD31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		374661E6220086CF0021FD31 /* Build configuration list for PBXNativeTarget "Gravity Rush" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				374661E7220086CF0021FD31 /* Debug */,
+				374661E8220086CF0021FD31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 374661C6220086CE0021FD31 /* Project object */;
+}
