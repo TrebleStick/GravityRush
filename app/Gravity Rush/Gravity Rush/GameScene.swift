@@ -16,6 +16,7 @@ class GameScene: SKScene {
 //    private var score: SKLabelNode = SKLabelNode()
     private var score: SKLabelNode?
     private var cam: SKCameraNode?
+    private var engine: SKEmitterNode = SKEmitterNode()
 //    private var rotationVal: CGFloat = 0
 //    private var offset: CGFloat = 0
     private let rotateRecogniser = UIRotationGestureRecognizer()
@@ -38,12 +39,19 @@ class GameScene: SKScene {
         if let sprite:SKSpriteNode = self.childNode(withName: "Ship") as? SKSpriteNode {
             ship = sprite
             ship.physicsBody?.friction = 0
+            if let emitter:SKEmitterNode = ship.childNode(withName: "Engine") as? SKEmitterNode {
+                engine = emitter
+//                engine.particleBirthRate = 250
+                engine.particleTexture = SKTexture(image: #imageLiteral(resourceName: "spark"))
+            } else { print("ERROR: Engine not initiated") }
         } else { print("ERROR: Ship not initiated") }
+        
+       
 //        ship.constraints?.append(SKConstraint.positionX(SKRange(lowerLimit: -(self.size.width / 2) + (ship.size.width / 2), upperLimit: (self.size.width / 2) - (ship.size.width / 2))))
         
         //Setup score and add to camera
         score = SKLabelNode(fontNamed: "Helvetica Neue UltraLight")
-//        score?.fontSize = 48
+        score?.fontSize = 48
         score?.text = "1000"
         score?.color = UIColor.white
         score?.position = CGPoint(x: self.size.width / 2 - 50, y:      self.size.height / 2 - 50)
@@ -62,6 +70,7 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         
+        
         keepPlayerInBounds()
       
         if let camera = cam {
@@ -69,6 +78,12 @@ class GameScene: SKScene {
             camera.position.x = 0
         }
         
+        if (ship.physicsBody?.velocity.dy)! > 200 {
+            ship.physicsBody?.velocity.dy = 200
+        }
+        if (ship.physicsBody?.velocity.dx)! > 200 {
+            ship.physicsBody?.velocity.dx = 200
+        }
 //        rotationVal = ship.zRotation
 
         if Int(arc4random()) % 4 == 0 {
@@ -76,6 +91,11 @@ class GameScene: SKScene {
                 self.score?.text = String(intScore + 15)
             }
         }
+        if Int(arc4random()) % 20 == 0 {
+            engine.particleBirthRate = 250
+            engine.particleTexture = SKTexture(image: #imageLiteral(resourceName: "spark"))
+        }
+       
     }
     
     private func keepPlayerInBounds() {
@@ -91,10 +111,10 @@ class GameScene: SKScene {
 
     @objc func tapView(){
 //        print("Tapped")
-        
-        let xVec: CGFloat = sin(ship.zRotation) * -200000
-        let yVec: CGFloat = cos(ship.zRotation) * 200000
-        
+        engine.particleBirthRate = 500
+        engine.particleTexture = SKTexture(image: #imageLiteral(resourceName: "bokeh"))
+        let xVec: CGFloat = sin(ship.zRotation) * -200
+        let yVec: CGFloat = cos(ship.zRotation) * 200
         ship.physicsBody?.applyForce(CGVector(dx: xVec, dy: yVec))
         ship.physicsBody?.angularVelocity = 0
 
