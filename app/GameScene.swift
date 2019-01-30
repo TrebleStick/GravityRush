@@ -45,7 +45,7 @@ class GameScene: SKScene {
 //        score?.fontSize = 48
         score?.text = "1000"
         score?.color = UIColor.white
-        score?.position = CGPoint(x: self.size.width / 2 - 50, y:      self.size.height / 2 - 50)
+        score?.position = CGPoint(x: self.size.width / 2 - 75, y:      self.size.height / 2 - 75)
         self.camera?.addChild(score!)
         
         
@@ -91,11 +91,10 @@ class GameScene: SKScene {
     @objc func tapView(){
 //        print("Tapped")
         
-        let xVec: CGFloat = sin(ship.zRotation) * -100
-        let yVec: CGFloat = cos(ship.zRotation) * 100
+        let xVec: CGFloat = sin(ship.zRotation) * -1
+        let yVec: CGFloat = cos(ship.zRotation) * 1
         
-        ship.physicsBody?.velocity = CGVector(dx: xVec, dy: yVec)
-        ship.physicsBody?.angularVelocity = 0
+        ship.physicsBody?.applyImpulse(CGVector(dx: xVec, dy: yVec))
 
     }
     

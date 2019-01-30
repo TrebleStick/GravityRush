@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37430DF122020D6900C8BD42 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37430DF022020D6900C8BD42 /* GameScene.swift */; };
 		374661D2220086CE0021FD31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374661D1220086CE0021FD31 /* AppDelegate.swift */; };
 		374661D4220086CE0021FD31 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 374661D3220086CE0021FD31 /* GameScene.sks */; };
 		374661D6220086CE0021FD31 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 374661D5220086CE0021FD31 /* Actions.sks */; };
-		374661D8220086CE0021FD31 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374661D7220086CE0021FD31 /* GameScene.swift */; };
 		374661DA220086CE0021FD31 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374661D9220086CE0021FD31 /* GameViewController.swift */; };
 		374661DD220086CE0021FD31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 374661DB220086CE0021FD31 /* Main.storyboard */; };
 		374661DF220086CF0021FD31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 374661DE220086CF0021FD31 /* Assets.xcassets */; };
@@ -21,11 +21,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		37430DF022020D6900C8BD42 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		374661CE220086CE0021FD31 /* Gravity Rush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gravity Rush.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		374661D1220086CE0021FD31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		374661D3220086CE0021FD31 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		374661D5220086CE0021FD31 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
-		374661D7220086CE0021FD31 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		374661D9220086CE0021FD31 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		374661DC220086CE0021FD31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		374661DE220086CF0021FD31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -72,8 +72,8 @@
 				374661E922008A990021FD31 /* SparkParticle.sks */,
 				374661EB2200A46A0021FD31 /* SpaceRain.sks */,
 				374661D5220086CE0021FD31 /* Actions.sks */,
-				374661D7220086CE0021FD31 /* GameScene.swift */,
 				374661D9220086CE0021FD31 /* GameViewController.swift */,
+				37430DF022020D6900C8BD42 /* GameScene.swift */,
 				374661DB220086CE0021FD31 /* Main.storyboard */,
 				374661DE220086CF0021FD31 /* Assets.xcassets */,
 				374661E0220086CF0021FD31 /* LaunchScreen.storyboard */,
@@ -158,8 +158,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				374661D8220086CE0021FD31 /* GameScene.swift in Sources */,
 				374661DA220086CE0021FD31 /* GameViewController.swift in Sources */,
+				37430DF122020D6900C8BD42 /* GameScene.swift in Sources */,
 				374661D2220086CE0021FD31 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
