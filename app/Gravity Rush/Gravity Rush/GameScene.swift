@@ -37,6 +37,7 @@ class GameScene: SKScene {
         //Setup ship
         if let sprite:SKSpriteNode = self.childNode(withName: "Ship") as? SKSpriteNode {
             ship = sprite
+            ship.physicsBody?.friction = 0
         } else { print("ERROR: Ship not initiated") }
 //        ship.constraints?.append(SKConstraint.positionX(SKRange(lowerLimit: -(self.size.width / 2) + (ship.size.width / 2), upperLimit: (self.size.width / 2) - (ship.size.width / 2))))
         
@@ -91,10 +92,10 @@ class GameScene: SKScene {
     @objc func tapView(){
 //        print("Tapped")
         
-        let xVec: CGFloat = sin(ship.zRotation) * -100
-        let yVec: CGFloat = cos(ship.zRotation) * 100
+        let xVec: CGFloat = sin(ship.zRotation) * -200000
+        let yVec: CGFloat = cos(ship.zRotation) * 200000
         
-        ship.physicsBody?.velocity = CGVector(dx: xVec, dy: yVec)
+        ship.physicsBody?.applyForce(CGVector(dx: xVec, dy: yVec))
         ship.physicsBody?.angularVelocity = 0
 
     }
