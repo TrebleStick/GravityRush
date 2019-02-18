@@ -23,6 +23,7 @@
 		374661EC2200A46A0021FD31 /* SpaceRain.sks in Resources */ = {isa = PBXBuildFile; fileRef = 374661EB2200A46A0021FD31 /* SpaceRain.sks */; };
 		374661F12200AB9F0021FD31 /* Magic.sks in Resources */ = {isa = PBXBuildFile; fileRef = 374661EF2200AB9F0021FD31 /* Magic.sks */; };
 		3775F0AF220DA4C50005006A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3775F0AE220DA4C50005006A /* GoogleService-Info.plist */; };
+		37784A9B221B46AE006C52D4 /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37784A9A221B46AE006C52D4 /* extension.swift */; };
 		379B42A0220DA88A00FAE2EA /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379B429F220DA88A00FAE2EA /* LeaderboardViewController.swift */; };
 		379CBABA2211C616000B81E4 /* ViewControllerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379CBAB92211C616000B81E4 /* ViewControllerTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -46,6 +47,7 @@
 		374661EB2200A46A0021FD31 /* SpaceRain.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpaceRain.sks; sourceTree = "<group>"; };
 		374661EF2200AB9F0021FD31 /* Magic.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Magic.sks; sourceTree = "<group>"; };
 		3775F0AE220DA4C50005006A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		37784A9A221B46AE006C52D4 /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
 		379B429F220DA88A00FAE2EA /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		379CBAB92211C616000B81E4 /* ViewControllerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTableViewCell.swift; sourceTree = "<group>"; };
 		E403B76A4ED6CC48D463A2FE /* Pods-Gravity Rush.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gravity Rush.debug.xcconfig"; path = "Target Support Files/Pods-Gravity Rush/Pods-Gravity Rush.debug.xcconfig"; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				374661D9220086CE0021FD31 /* GameViewController.swift */,
 				37430DF022020D6900C8BD42 /* GameScene.swift */,
 				374661DB220086CE0021FD31 /* Main.storyboard */,
+				37784A9A221B46AE006C52D4 /* extension.swift */,
 				3703159A221B3CD50017FD79 /* MainMenuViewController.swift */,
 				3703159C221B3D520017FD79 /* MainMenuScene.sks */,
 				379B429F220DA88A00FAE2EA /* LeaderboardViewController.swift */,
@@ -257,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3703159B221B3CD50017FD79 /* MainMenuViewController.swift in Sources */,
+				37784A9B221B46AE006C52D4 /* extension.swift in Sources */,
 				374661DA220086CE0021FD31 /* GameViewController.swift in Sources */,
 				37430DF122020D6900C8BD42 /* GameScene.swift in Sources */,
 				379CBABA2211C616000B81E4 /* ViewControllerTableViewCell.swift in Sources */,

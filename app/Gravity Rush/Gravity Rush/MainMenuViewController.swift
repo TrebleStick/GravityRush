@@ -12,9 +12,15 @@ import GameplayKit
 
 class MainMenuViewController: UIViewController {
     
+    @IBOutlet weak var gravityRushLabel: UILabel!
+    @IBOutlet weak var leaderBoardContainer: UIView!
+    @IBOutlet weak var settingsView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        leaderBoardContainer.isHidden = true
+        settingsView.isHidden = true
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
         if let scene = GKScene(fileNamed: "MainMenuScene") {
@@ -59,4 +65,42 @@ class MainMenuViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    
+    func toggleSettings(){
+        if settingsView.isHidden == true{
+            settingsView.isHidden = false
+            gravityRushLabel.isHidden = true
+            leaderBoardContainer.isHidden = true
+        }
+        else {
+            gravityRushLabel.isHidden = false
+            settingsView.isHidden = true
+        }
+    }
+    
+    func toggleLeaderboard(){
+        if leaderBoardContainer.isHidden == true{
+            leaderBoardContainer.isHidden = false
+            gravityRushLabel.isHidden = true
+            settingsView.isHidden = true
+        }
+        else {
+            gravityRushLabel.isHidden = false
+            leaderBoardContainer.isHidden = true
+        }
+    }
+    @IBAction func LeaderboardButton(_ sender: Any) {
+        toggleLeaderboard()
+    }
+    @IBAction func settingsButton(_ sender: Any) {
+        toggleSettings()
+    }
+    @IBAction func playButton(_ sender: Any) {
+        if let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "game") as? GameViewController{
+            self.present(viewController, animated: true, completion: nil)    }
+        }
+        // .instantiatViewControllerWithIdentifier() returns AnyObject! this must be downcast to utilize it
+        
+
+    
 }
