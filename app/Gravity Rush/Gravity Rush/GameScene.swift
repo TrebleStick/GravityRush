@@ -51,10 +51,10 @@ class GameScene: SKScene {
         
         //Setup score and add to camera
         score = SKLabelNode(fontNamed: "Helvetica Neue UltraLight")
-        score?.fontSize = 48
+        score?.fontSize = 80
         score?.text = "1000"
         score?.color = UIColor.white
-        score?.position = CGPoint(x: self.size.width / 2 - 50, y:      self.size.height / 2 - 50)
+        score?.position = CGPoint(x: self.size.width / 2 - 130, y: self.size.height / 2 - 100)
         self.camera?.addChild(score!)
         
         
@@ -147,15 +147,6 @@ class GameScene: SKScene {
     func touchUp(atPoint pos : CGPoint) {
 
     }
-    
-//    func addEmitter(){
-//        guard let emitter = SKEmitterNode(fileNamed: "Magic") else {
-//            return
-//        }
-//        emitter.zPosition = 2
-//        emitter.position = CGPoint(x: size.width, y: size.height)
-//        addChild(emitter)
-//    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
