@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1F1BB571174A529FC3CD03D1 /* Pods_Gravity_Rush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7EA064DBE63EAF8EB5668F5 /* Pods_Gravity_Rush.framework */; };
 		37031599221B3B970017FD79 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 37031598221B3B970017FD79 /* GameScene.sks */; };
+		3703159B221B3CD50017FD79 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703159A221B3CD50017FD79 /* MainMenuViewController.swift */; };
+		3703159D221B3D520017FD79 /* MainMenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3703159C221B3D520017FD79 /* MainMenuScene.sks */; };
 		37430DF122020D6900C8BD42 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37430DF022020D6900C8BD42 /* GameScene.swift */; };
 		374661D2220086CE0021FD31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374661D1220086CE0021FD31 /* AppDelegate.swift */; };
 		374661D4220086CE0021FD31 /* GameSceneNo.sks in Resources */ = {isa = PBXBuildFile; fileRef = 374661D3220086CE0021FD31 /* GameSceneNo.sks */; };
@@ -28,6 +30,8 @@
 /* Begin PBXFileReference section */
 		2006CF9E54FAC46DDD4890F2 /* Pods-Gravity Rush.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gravity Rush.release.xcconfig"; path = "Target Support Files/Pods-Gravity Rush/Pods-Gravity Rush.release.xcconfig"; sourceTree = "<group>"; };
 		37031598221B3B970017FD79 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = ../../../../../../Downloads/GameScene.sks; sourceTree = "<group>"; };
+		3703159A221B3CD50017FD79 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		3703159C221B3D520017FD79 /* MainMenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenuScene.sks; sourceTree = "<group>"; };
 		37430DF022020D6900C8BD42 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		374661CE220086CE0021FD31 /* Gravity Rush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gravity Rush.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		374661D1220086CE0021FD31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +103,8 @@
 				374661D9220086CE0021FD31 /* GameViewController.swift */,
 				37430DF022020D6900C8BD42 /* GameScene.swift */,
 				374661DB220086CE0021FD31 /* Main.storyboard */,
+				3703159A221B3CD50017FD79 /* MainMenuViewController.swift */,
+				3703159C221B3D520017FD79 /* MainMenuScene.sks */,
 				379B429F220DA88A00FAE2EA /* LeaderboardViewController.swift */,
 				379CBAB92211C616000B81E4 /* ViewControllerTableViewCell.swift */,
 				374661DE220086CF0021FD31 /* Assets.xcassets */,
@@ -186,6 +192,7 @@
 				374661E2220086CF0021FD31 /* LaunchScreen.storyboard in Resources */,
 				37031599221B3B970017FD79 /* GameScene.sks in Resources */,
 				374661EC2200A46A0021FD31 /* SpaceRain.sks in Resources */,
+				3703159D221B3D520017FD79 /* MainMenuScene.sks in Resources */,
 				3775F0AF220DA4C50005006A /* GoogleService-Info.plist in Resources */,
 				374661D6220086CE0021FD31 /* Actions.sks in Resources */,
 			);
@@ -249,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3703159B221B3CD50017FD79 /* MainMenuViewController.swift in Sources */,
 				374661DA220086CE0021FD31 /* GameViewController.swift in Sources */,
 				37430DF122020D6900C8BD42 /* GameScene.swift in Sources */,
 				379CBABA2211C616000B81E4 /* ViewControllerTableViewCell.swift in Sources */,
