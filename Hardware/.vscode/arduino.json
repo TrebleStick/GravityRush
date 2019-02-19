@@ -1,0 +1,5 @@
+{
+    "board": "Intel:arc32:arduino_101",
+    "port": "COM8",
+    "sketch": "src\\event_extraction\\event_extraction.ino"
+}

@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:\\Users\\omarh\\AppData\\Local\\Arduino15\\packages\\Intel\\tools\\**",
+                "C:\\Users\\omarh\\AppData\\Local\\Arduino15\\packages\\Intel\\hardware\\arc32\\2.0.4\\**"
+            ],
+            "forcedInclude": [
+                "C:\\Users\\omarh\\AppData\\Local\\Arduino15\\packages\\Intel\\hardware\\arc32\\2.0.4\\cores\\arduino\\Arduino.h"
+            ],
+            "intelliSenseMode": "msvc-x64"
+        }
+    ],
+    "version": 4
+}

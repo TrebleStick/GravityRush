@@ -9,6 +9,8 @@ void setup() {
 }
 
 void loop() {
+  Serial.println("press any key to begin recording");
+  while(!Serial.available());
   Serial.println("Starting recording in...");
   delay(500);
   Serial.println("3...");
@@ -18,6 +20,7 @@ void loop() {
   Serial.println("1...");
   delay(1000);
   Serial.println("Recording...");
+  Serial.println("***");
   int results[SAMPLING_WINDOW_SAMP];
   for (int i  = 0; i < SAMPLING_WINDOW_SAMP; i++) {
     results[i] = int(analogRead(A0));
@@ -26,6 +29,8 @@ void loop() {
   Serial.println("Recording Complete");
   for (int k = 0; k < SAMPLING_WINDOW_SAMP; k++) {
     int temp = int(results[k]);
+    Serial.print(k);
+    Serial.print(",");
     Serial.println(temp);
   }
   while (1);
