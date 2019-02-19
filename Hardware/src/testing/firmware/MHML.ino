@@ -36,14 +36,16 @@ void error(const __FlashStringHelper*err) {
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
-  
+  pinMode(BLUEFRUIT_UART_MOD_PIN, OUTPUT);
+
   Serial.begin(115200);   // setup hardware serial
   Serial.println(F("GravityRush Firmware"));
   Serial.println(F("------------------------------------------------"));
 
   // Set module to CMD mode
   Serial.println( F("Switching to CMD mode!") );
-  ble.setMode(BLUEFRUIT_MODE_COMMAND);
+  //ble.setMode(BLUEFRUIT_MODE_COMMAND);
+  digitalWrite(BLUEFRUIT_UART_MOD_PIN, HIGH);
 
   Serial.println(F("******************************"));
 
@@ -77,7 +79,7 @@ void setup() {
   if (! ble.sendCommandCheckOK(F( "AT+GAPDEVNAME=GravityRush BLE" )) ) {
     error(F("Could not set device name?"));
   }
-  
+
   /* Enable HID Service */
   Serial.println(F("Enable HID"));
   if ( ble.isVersionAtLeast(MINIMUM_FIRMWARE_VERSION) )
@@ -115,34 +117,35 @@ void setup() {
 
   // Set module to DATA mode
   Serial.println( F("Switching to DATA mode!") );
-  ble.setMode(BLUEFRUIT_MODE_DATA);
+  //ble.setMode(BLUEFRUIT_MODE_DATA);
+  digitalWrite(BLUEFRUIT_UART_MOD_PIN, LOW);
 
   Serial.println(F("******************************"));
 
   /* Set up accelerometer */
   /*Serial.println("LIS3DH test!");
-  
+
   if (! lis.begin(0x19)) {   // change this to 0x19 for alternative i2c address
     Serial.println("Couldnt start");
     while (1);
   }
   Serial.println("LIS3DH found!");
-  
+
   lis.setRange(LIS3DH_RANGE_4_G);   // 2, 4, 8 or 16 G!
-  
-  Serial.print("LIS Range = "); Serial.print(2 << lis.getRange());  
+
+  Serial.print("LIS Range = "); Serial.print(2 << lis.getRange());
   Serial.println("G");*/
 }
 
 void loop() {
   // Read EMG Data
-  val = analogRead(EMG_Pin);     
+  val = analogRead(EMG_Pin);
   val = val/1023;                  // scale data
   //Serial.println(val);           // print sensor value
 
   // Read Raw accel data
   //lis.read();
-  
+
   // Send EMG data via bluetooth
   if (val != 0) {
     ble.print(val);
@@ -151,9 +154,9 @@ void loop() {
 
   // Send raw accel data via bluetooth
   /*if ((lis.x != 0) || (lis.y != 0) || (lis.z != 0)) {
-    ble.print("X:  "); ble.print(lis.x); 
-    ble.print("  \tY:  "); ble.print(lis.y); 
-    ble.print("  \tZ:  "); ble.print(lis.z); 
+    ble.print("X:  "); ble.print(lis.x);
+    ble.print("  \tY:  "); ble.print(lis.y);
+    ble.print("  \tZ:  "); ble.print(lis.z);
   }*/
 
   // Receive data via bluetooth
@@ -165,5 +168,5 @@ void loop() {
   delay(100);
 }
 
-// Chain: Read Sensor (AnalogRead) (and accelerometer) -> Send via Bluetooth 
+// Chain: Read Sensor (AnalogRead) (and accelerometer) -> Send via Bluetooth
 // Additional: Receive instruction from Bluetooth -> Change sensor parameters?

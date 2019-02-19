@@ -15,7 +15,7 @@
 #define BLUEFRUIT_SWUART_TXD_PIN       10   // Required for software serial!
 #define BLUEFRUIT_UART_CTS_PIN         11   // Required for software serial!
 #define BLUEFRUIT_UART_RTS_PIN         -1   // Optional, set to -1 if unused
-
+#define BLUEFRUIT_UART_MOD_PIN         8
 
 // HARDWARE UART SETTINGS
 // ----------------------------------------------------------------------------------------------
