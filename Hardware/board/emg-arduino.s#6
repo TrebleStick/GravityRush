@@ -11714,19 +11714,19 @@ For reference (or to suit your programming needs) check out these designs:
 <attribute name="NAME" x="151.13" y="77.216" size="1.778" layer="95"/>
 <attribute name="VALUE" x="168.402" y="77.216" size="1.778" layer="96"/>
 </instance>
-<instance part="U3" gate="G$1" x="48.26" y="139.7" smashed="yes">
-<attribute name="NAME" x="37.338" y="143.256" size="1.778" layer="95"/>
-<attribute name="VALUE" x="52.07" y="143.002" size="1.778" layer="96"/>
+<instance part="U3" gate="G$1" x="119.38" y="119.38" smashed="yes">
+<attribute name="NAME" x="108.458" y="122.936" size="1.778" layer="95"/>
+<attribute name="VALUE" x="123.19" y="122.682" size="1.778" layer="96"/>
 </instance>
 <instance part="U4" gate="G$1" x="149.86" y="17.78" smashed="yes">
 <attribute name="NAME" x="145.288" y="28.702" size="1.778" layer="95"/>
 <attribute name="VALUE" x="145.288" y="2.54" size="1.778" layer="96"/>
 </instance>
-<instance part="+3V1" gate="G$1" x="71.12" y="147.32" smashed="yes">
-<attribute name="VALUE" x="68.58" y="142.24" size="1.778" layer="96" rot="R90"/>
+<instance part="+3V1" gate="G$1" x="142.24" y="127" smashed="yes">
+<attribute name="VALUE" x="139.7" y="121.92" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="GND1" gate="1" x="30.48" y="129.54" smashed="yes">
-<attribute name="VALUE" x="27.94" y="127" size="1.778" layer="96"/>
+<instance part="GND1" gate="1" x="101.6" y="109.22" smashed="yes">
+<attribute name="VALUE" x="99.06" y="106.68" size="1.778" layer="96"/>
 </instance>
 <instance part="GND2" gate="1" x="165.1" y="35.56" smashed="yes">
 <attribute name="VALUE" x="162.56" y="33.02" size="1.778" layer="96"/>
@@ -11787,12 +11787,12 @@ For reference (or to suit your programming needs) check out these designs:
 <instance part="+3V9" gate="G$1" x="25.4" y="99.06" smashed="yes">
 <attribute name="VALUE" x="22.86" y="93.98" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="C3" gate="G$1" x="71.12" y="134.62" smashed="yes">
-<attribute name="NAME" x="72.644" y="135.001" size="1.778" layer="95"/>
-<attribute name="VALUE" x="72.644" y="129.921" size="1.778" layer="96"/>
+<instance part="C3" gate="G$1" x="142.24" y="114.3" smashed="yes">
+<attribute name="NAME" x="143.764" y="114.681" size="1.778" layer="95"/>
+<attribute name="VALUE" x="143.764" y="109.601" size="1.778" layer="96"/>
 </instance>
-<instance part="GND7" gate="1" x="71.12" y="124.46" smashed="yes">
-<attribute name="VALUE" x="68.58" y="121.92" size="1.778" layer="96"/>
+<instance part="GND7" gate="1" x="142.24" y="104.14" smashed="yes">
+<attribute name="VALUE" x="139.7" y="101.6" size="1.778" layer="96"/>
 </instance>
 <instance part="C4" gate="G$1" x="55.88" y="99.06" smashed="yes">
 <attribute name="NAME" x="57.404" y="99.441" size="1.778" layer="95"/>
@@ -11845,11 +11845,11 @@ For reference (or to suit your programming needs) check out these designs:
 <segment>
 <pinref part="U3" gate="G$1" pin="VOUT"/>
 <pinref part="+3V1" gate="G$1" pin="+3V3"/>
-<wire x1="63.5" y1="139.7" x2="71.12" y2="139.7" width="0.1524" layer="91"/>
-<wire x1="71.12" y1="139.7" x2="71.12" y2="144.78" width="0.1524" layer="91"/>
+<wire x1="134.62" y1="119.38" x2="142.24" y2="119.38" width="0.1524" layer="91"/>
+<wire x1="142.24" y1="119.38" x2="142.24" y2="124.46" width="0.1524" layer="91"/>
 <pinref part="C3" gate="G$1" pin="1"/>
-<wire x1="71.12" y1="139.7" x2="71.12" y2="137.16" width="0.1524" layer="91"/>
-<junction x="71.12" y="139.7"/>
+<wire x1="142.24" y1="119.38" x2="142.24" y2="116.84" width="0.1524" layer="91"/>
+<junction x="142.24" y="119.38"/>
 </segment>
 <segment>
 <pinref part="R1" gate="G$1" pin="1"/>
@@ -11947,8 +11947,8 @@ For reference (or to suit your programming needs) check out these designs:
 <segment>
 <pinref part="U3" gate="G$1" pin="GND"/>
 <pinref part="GND1" gate="1" pin="GND"/>
-<wire x1="33.02" y1="134.62" x2="30.48" y2="134.62" width="0.1524" layer="91"/>
-<wire x1="30.48" y1="134.62" x2="30.48" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="104.14" y1="114.3" x2="101.6" y2="114.3" width="0.1524" layer="91"/>
+<wire x1="101.6" y1="114.3" x2="101.6" y2="111.76" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U2" gate="G$1" pin="GND"/>
@@ -11987,7 +11987,7 @@ For reference (or to suit your programming needs) check out these designs:
 </segment>
 <segment>
 <pinref part="C3" gate="G$1" pin="2"/>
-<wire x1="71.12" y1="129.54" x2="71.12" y2="127" width="0.1524" layer="91"/>
+<wire x1="142.24" y1="109.22" x2="142.24" y2="106.68" width="0.1524" layer="91"/>
 <pinref part="GND7" gate="1" pin="GND"/>
 </segment>
 <segment>
@@ -12181,8 +12181,8 @@ For reference (or to suit your programming needs) check out these designs:
 <net name="VBAT" class="0">
 <segment>
 <pinref part="U3" gate="G$1" pin="VIN"/>
-<wire x1="33.02" y1="139.7" x2="22.86" y2="139.7" width="0.1524" layer="91"/>
-<label x="22.86" y="139.7" size="1.778" layer="95"/>
+<wire x1="104.14" y1="119.38" x2="93.98" y2="119.38" width="0.1524" layer="91"/>
+<label x="93.98" y="119.38" size="1.778" layer="95"/>
 </segment>
 <segment>
 <pinref part="J2" gate="G$1" pin="2"/>

@@ -12055,13 +12055,6 @@ For reference (or to suit your programming needs) check out these designs:
 <label x="185.42" y="63.5" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="AT_RXI" class="0">
-<segment>
-<pinref part="U4" gate="G$1" pin="TXO"/>
-<wire x1="139.7" y1="20.32" x2="127" y2="20.32" width="0.1524" layer="91"/>
-<label x="127" y="20.32" size="1.778" layer="95"/>
-</segment>
-</net>
 <net name="CTS" class="0">
 <segment>
 <pinref part="U4" gate="G$1" pin="CTS"/>
@@ -12207,6 +12200,11 @@ For reference (or to suit your programming needs) check out these designs:
 <pinref part="J1" gate="G$1" pin="TXO"/>
 <wire x1="-5.08" y1="43.18" x2="5.08" y2="43.18" width="0.1524" layer="91"/>
 <label x="-2.54" y="43.18" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U4" gate="G$1" pin="TXO"/>
+<wire x1="139.7" y1="20.32" x2="127" y2="20.32" width="0.1524" layer="91"/>
+<label x="127" y="20.32" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="AT_TXD" class="0">

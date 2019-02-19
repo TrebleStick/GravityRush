@@ -2103,7 +2103,6 @@ design rules under a new name.</description>
 <via x="5.461" y="37.592" extent="1-16" drill="0.25"/>
 <via x="4.572" y="36.576" extent="1-16" drill="0.25"/>
 <via x="5.461" y="36.576" extent="1-16" drill="0.25"/>
-<wire x1="4.572" y1="36.576" x2="5.461" y2="36.576" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="SDA">
 <contactref element="U1" pad="27"/>
