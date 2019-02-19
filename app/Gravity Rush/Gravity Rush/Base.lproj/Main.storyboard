@@ -245,33 +245,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jrx-B1-hbz">
-                                <rect key="frame" x="0.0" y="0.0" width="325" height="445"/>
+                                <rect key="frame" x="1" y="1" width="323" height="443"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="1" green="0.52120530610000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="leaderCell" id="x8b-MC-jUv" customClass="ViewControllerTableViewCell" customModule="Gravity_Rush" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="325" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="323" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x8b-MC-jUv" id="p6N-Ny-ZFz">
-                                            <rect key="frame" x="0.0" y="0.0" width="325" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="323" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tc0-NR-urg">
-                                                    <rect key="frame" x="77" y="11.5" width="162.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="77" y="9.5" width="162.5" height="24.5"/>
+                                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="21"/>
                                                     <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6o-ru-vQf">
-                                                    <rect key="frame" x="247.5" y="11.5" width="57.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="247.5" y="10.5" width="57.5" height="23"/>
+                                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="20"/>
                                                     <color key="textColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3B-Lz-kBP">
-                                                    <rect key="frame" x="20" y="11.5" width="49" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="20" y="10.5" width="49" height="23"/>
+                                                    <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="20"/>
                                                     <color key="textColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -299,7 +299,7 @@
                                 </prototypes>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="3"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" red="0.473826319" green="0.2359946668" blue="0.59900462629999995" alpha="1" colorSpace="deviceRGB"/>
@@ -311,12 +311,12 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="systemPurpleColor" catalog="System" colorSpace="catalog"/>
                         <constraints>
-                            <constraint firstItem="Jrx-B1-hbz" firstAttribute="leading" secondItem="n89-Qf-hrp" secondAttribute="leading" id="61e-fX-Yoj"/>
-                            <constraint firstItem="Jrx-B1-hbz" firstAttribute="top" secondItem="n89-Qf-hrp" secondAttribute="top" id="9AH-4L-1o2"/>
-                            <constraint firstItem="Jrx-B1-hbz" firstAttribute="bottom" secondItem="n89-Qf-hrp" secondAttribute="bottom" id="RMh-jv-E9g"/>
-                            <constraint firstItem="Jrx-B1-hbz" firstAttribute="trailing" secondItem="n89-Qf-hrp" secondAttribute="trailing" id="aPs-xI-DZk"/>
+                            <constraint firstItem="Jrx-B1-hbz" firstAttribute="leading" secondItem="n89-Qf-hrp" secondAttribute="leading" constant="1" id="61e-fX-Yoj"/>
+                            <constraint firstItem="Jrx-B1-hbz" firstAttribute="top" secondItem="n89-Qf-hrp" secondAttribute="top" constant="1" id="9AH-4L-1o2"/>
+                            <constraint firstItem="Jrx-B1-hbz" firstAttribute="bottom" secondItem="n89-Qf-hrp" secondAttribute="bottom" constant="-1" id="RMh-jv-E9g"/>
+                            <constraint firstItem="Jrx-B1-hbz" firstAttribute="trailing" secondItem="n89-Qf-hrp" secondAttribute="trailing" constant="-1" id="aPs-xI-DZk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="n89-Qf-hrp"/>
                     </view>
