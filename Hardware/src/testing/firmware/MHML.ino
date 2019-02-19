@@ -159,11 +159,12 @@ void loop() {
   }
 #endif
 
-  //send EMG
+//send EMG
 #ifdef WINDOWING
   float data[SAMPLING_WINDOW_SIZE];
   for(int i = 0; i < SAMPLING_WINDOW_SIZE; i++) {
     data[i] = analogRead(EMG_Pin);
+    delay(1000/SAMPLING_WINDOW_HZ);
   }
 
   for(int i = 0; i < SAMPLING_WINDOW_SIZE; i++) {
