@@ -20,6 +20,7 @@ class MainMenuViewController: UIViewController{
 
     var centralManager: CBCentralManager!
     var myoPeripheral: CBPeripheral!
+    var dataArr: [Int] = []
 
     
     @IBOutlet weak var gravityRushLabel: UILabel!
@@ -188,12 +189,16 @@ extension MainMenuViewController: CBPeripheralDelegate {
 //            print(characteristicData)
             let byteArray = [UInt8](characteristicData)
 //            print(byteArray)
-            if byteArray.count >= 3{
-                if let stringByte = String(bytes: byteArray, encoding: .utf8) {
-                    print(stringByte)
-//                    if let val = Int(stringByte){
-//                        print(val)
+            if byteArray.count >= 4{
+                if let stringByte = String(bytes: byteArray[...2], encoding: .utf8) {
+//                    print(stringByte)
+//                    if dataArr.count > 30{
+//                        dataArr.removeFirst()
 //                    }
+                    if let intVal = Int(stringByte) {
+                        dataArr.append(intVal)
+                    }
+                    print(dataArr.count)
                 } else {
                     print("not a valid UTF-8 sequence")
                 }

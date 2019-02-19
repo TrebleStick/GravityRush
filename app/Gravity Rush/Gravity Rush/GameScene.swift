@@ -50,13 +50,12 @@ class GameScene: SKScene {
 //        ship.constraints?.append(SKConstraint.positionX(SKRange(lowerLimit: -(self.size.width / 2) + (ship.size.width / 2), upperLimit: (self.size.width / 2) - (ship.size.width / 2))))
         
         //Setup score and add to camera
-        score = SKLabelNode(fontNamed: "Helvetica Neue UltraLight")
+        score = SKLabelNode(fontNamed: "Futura")
         score?.fontSize = 80
         score?.text = "1000"
         score?.color = UIColor.white
         score?.position = CGPoint(x: self.size.width / 2 - 130, y: self.size.height / 2 - 100)
         self.camera?.addChild(score!)
-        
         
         //Set up actions for rotation and tapping
         rotateRecogniser.addTarget(self, action: #selector(GameScene.rotatedView(_:)))
