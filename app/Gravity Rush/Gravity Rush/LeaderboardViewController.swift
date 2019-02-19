@@ -23,7 +23,7 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
     var positionData: [Int] = []
     var myLocation = Int()
     var oldScore = Int()
-    let score = 14
+    let score = 5
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return(leaderNameSortedData.count)
@@ -69,8 +69,8 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
                     let userName = userObject?["username"]
                     let userScore = userObject?["HighScore"]
 
-                    self.leaderNameData.append(userName as? String ?? "fukt")
-                    self.leaderScoreData.append(String(userScore as? Int ?? 69) ?? "blez")
+                    self.leaderNameData.append(userName as? String ?? "ERROR: Append User")
+                    self.leaderScoreData.append(String(userScore as? Int ?? 0) ?? "ERROR: Append Score")
                 }
             self.leaderNameData.reverse()
             self.leaderScoreData.reverse()
@@ -80,18 +80,18 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
             for i in 0...end{
                 if i < 5{
                     if self.leaderNameData[i]==self.thisUser{
-                        self.oldScore = Int(self.leaderScoreData[i]) ?? 69
+                        self.oldScore = Int(self.leaderScoreData[i]) ?? 0
                         self.locationState = "top5"
                     }
                 }
                 else if i > 4 && i < 10{
                     if self.leaderNameData[i]==self.thisUser {
-                        self.oldScore = Int(self.leaderScoreData[i]) ?? 69
+                        self.oldScore = Int(self.leaderScoreData[i]) ?? 0
                         self.locationState = "top10"
                     }
                 }
                 else if self.leaderNameData[i]==self.thisUser{
-                    self.oldScore = Int(self.leaderScoreData[i]) ?? 69
+                    self.oldScore = Int(self.leaderScoreData[i]) ?? 0
                     self.locationState = "notTop"
                     self.myLocation = i
                 }
