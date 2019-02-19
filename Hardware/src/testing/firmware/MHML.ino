@@ -15,6 +15,11 @@
 #define EMG_Pin                       A0
 //#define SDA                         A4
 //#define SCL                         A5
+#define SAMPLING_WINDOW_HZ           1000
+#define SAMPLING_WINDOW_SIZE         500
+
+// If windowing is required uncomment this #define. If not then streaming will be used.
+//#define WINDOWING
 
 //int sensorPin = A0;
 float val = 0;
@@ -146,11 +151,26 @@ void loop() {
   // Read Raw accel data
   //lis.read();
 
-  // Send EMG data via bluetooth
+#ifndef WINDOWING
+  // Send EMG data via bluetooth in stream mode
   if (val != 0) {
     ble.print(val);
     ble.print(" ");
   }
+#endif
+
+  //send EMG
+#ifdef WINDOWING
+  float data[SAMPLING_WINDOW_SIZE];
+  for(int i = 0; i < SAMPLING_WINDOW_SIZE; i++) {
+    data[i] = analogRead(EMG_Pin);
+  }
+
+  for(int i = 0; i < SAMPLING_WINDOW_SIZE; i++) {
+    data[i] = data[i]/1023;
+    ble.print(data[i]);
+  }
+#endif
 
   // Send raw accel data via bluetooth
   /*if ((lis.x != 0) || (lis.y != 0) || (lis.z != 0)) {
