@@ -11,17 +11,16 @@ import SpriteKit
 import GameplayKit
 import CoreBluetooth
 
-let deviceServiceCBUUID = CBUUID(string: "0x180D")
+let deviceServiceCBUUID = CBUUID(string: "0x1812")
+let HIDcharCBUUID = CBUUID(string: "6E400003-B5A3-F393-E0A9-E50E24DCCA9E")
+let HIDserviceCBUUID = CBUUID(string: "6E400001-B5A3-F393-E0A9-E50E24DCCA9E")
 
 //class MainMenuViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
 class MainMenuViewController: UIViewController{
 
     var centralManager: CBCentralManager!
     var myoPeripheral: CBPeripheral!
-//    var device: CBPeripheral?
-//
-//    let serviceUUID = CBUUID(string: "1812")
-//    let deviceCharacteristicUUID = CBUUID(string: <#T##String#>)
+
     
     @IBOutlet weak var gravityRushLabel: UILabel!
     @IBOutlet weak var leaderBoardContainer: UIView!
@@ -29,8 +28,7 @@ class MainMenuViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        centralManager = CBCentralManager()
-//        centralManager.delegate = self
+
         centralManager = CBCentralManager(delegate: self, queue: nil)
         
         leaderBoardContainer.isHidden = true
@@ -62,54 +60,7 @@ class MainMenuViewController: UIViewController{
         }
     }
     
-    
-//
-//    func centralManagerDidUpdateState(_ central: CBCentralManager) {
-//        if central.state == .poweredOn {
-//            centralManager.scanForPeripherals(withServices: [serviceUUID], options: nil)
-//        }
-//    }
-//    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-//        centralManager.stopScan()
-//        device = peripheral
-//        centralManager.connect(peripheral, options: nil)
-//    }
-//    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-//        peripheral.delegate = self
-//        peripheral.discoverServices([serviceUUID])
-//    }
-//
-//
-//    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-////        if let characteristic = service.characteristics {
-////            print(characteristic)
-////        }
-//        print("in didDiscoverServices")
-//        if let service = peripheral.services {
-//            print(service)
-//        }
-//        if let service = peripheral.services?.first(where: { $0.uuid == serviceUUID}) {
-//            print("discovered services..")
-//            print(service.characteristics)
-////            peripheral.discoverCharacteristics([deviceCharacteristicUUID], for: service)
-//        }
-//    }
-//
-//
-//    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-//        if let characteristic = service.characteristics {
-//            print(characteristic)
-//        }
-////        if let characteristic = service.characteristics?.first(where: { $0.uuid == deviceCharacteristicUUID}) {
-////            peripheral.setNotifyValue(true, for: characteristic)
-////        }
-//    }
-//
-//    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-//        if let data = characteristic.value {
-//            print(data)
-//        }
-//    }
+ 
     
     override var shouldAutorotate: Bool {
         return true
@@ -200,7 +151,7 @@ extension MainMenuViewController: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print("Connected to GR BLE")
-        myoPeripheral.discoverServices(nil)
+        myoPeripheral.discoverServices([HIDserviceCBUUID])
     }
 }
 
@@ -209,8 +160,8 @@ extension MainMenuViewController: CBPeripheralDelegate {
         guard let services = peripheral.services else { return }
         
         for service in services {
-            print(service)
-            peripheral.discoverCharacteristics(nil, for: service)
+//            print(service)
+            peripheral.discoverCharacteristics([HIDcharCBUUID], for: service)
         }
     }
     
@@ -219,6 +170,38 @@ extension MainMenuViewController: CBPeripheralDelegate {
         
         for characteristic in characteristics {
             print(characteristic)
+            if characteristic.properties.contains(.read) {
+                print("\(characteristic.uuid): properties contains .read")
+            }
+            if characteristic.properties.contains(.notify) {
+                print("\(characteristic.uuid): properties contains .notify")
+                peripheral.setNotifyValue(true, for: characteristic)
+            }
+//            peripheral.readValue(for: characteristic)
         }
     }
+    
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        switch characteristic.uuid {
+        case HIDcharCBUUID:
+            guard let characteristicData = characteristic.value else { return }
+//            print(characteristicData)
+            let byteArray = [UInt8](characteristicData)
+//            print(byteArray)
+            if byteArray.count >= 3{
+                if let stringByte = String(bytes: byteArray, encoding: .utf8) {
+                    print(stringByte)
+//                    if let val = Int(stringByte){
+//                        print(val)
+//                    }
+                } else {
+                    print("not a valid UTF-8 sequence")
+                }
+            }
+
+        default:
+            print("Unhandled Characteristic UUID: \(characteristic.uuid)")
+        }
+    }
+    
 }

@@ -23,7 +23,7 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
     var positionData: [Int] = []
     var myLocation = Int()
     var oldScore = Int()
-    let score = 5
+    let score = 4
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return(leaderNameSortedData.count)
@@ -47,15 +47,17 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         print("before ref")
         ref = Database.database().reference()
+        var prevData = String()
+        var prevDataIndex = 1
         guard let db = ref else {
             print("db nil")
             return
         }
         
-        //if score > oldScore{
+        if score > oldScore{
             db.child("gameUsers/id18").updateChildValues(["HighScore": score])
             oldScore = score
-        //}
+        }
         
         let test = db.child("gameUsers").queryOrdered(byChild: "HighScore")
         test.observe(DataEventType.value, with:{(snapshot: DataSnapshot) in
@@ -69,7 +71,7 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
                     let userScore = userObject?["HighScore"]
 
                     self.leaderNameData.append(userName as? String ?? "ERROR: Append User")
-                    self.leaderScoreData.append(String(userScore as? Int ?? 0) ?? "ERROR: Append Score")
+                    self.leaderScoreData.append(String(userScore as? Int ?? 0) )
                 }
             self.leaderNameData.reverse()
             self.leaderScoreData.reverse()
@@ -100,7 +102,14 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
                 for i in 0...14{
                     self.leaderScoreSortedData.append(self.leaderScoreData[i])
                     self.leaderNameSortedData.append(self.leaderNameData[i])
-                    self.positionData.append(i+1)
+                    if self.leaderScoreData[i] == prevData{
+                        self.positionData.append(prevDataIndex)
+                    }
+                    else{
+                        self.positionData.append(i+1)
+                        prevDataIndex = i+1
+                    }
+                    prevData = self.leaderScoreData[i]
                 }
             }
             else if self.locationState == "notTop"{
@@ -108,12 +117,28 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
                 for i in 0...4{
                     self.leaderScoreSortedData.append(self.leaderScoreData[i])
                     self.leaderNameSortedData.append(self.leaderNameData[i])
-                    self.positionData.append(i+1)
+                    if self.leaderScoreData[i] == prevData{
+                        self.positionData.append(prevDataIndex)
+                    }
+                    else{
+                        self.positionData.append(i+1)
+                        prevDataIndex = i+1
+                    }
+                    prevData = self.leaderScoreData[i]
+
                 }
                 for i in (self.myLocation-5)...(self.myLocation+5){
                     self.leaderScoreSortedData.append(self.leaderScoreData[i])
                     self.leaderNameSortedData.append(self.leaderNameData[i])
-                    self.positionData.append(i+1)
+                    if self.leaderScoreData[i] == prevData{
+                        self.positionData.append(prevDataIndex)
+                    }
+                    else{
+                        self.positionData.append(i+1)
+                        prevDataIndex = i+1
+                    }
+                    prevData = self.leaderScoreData[i]
+
                 }
             }
             
