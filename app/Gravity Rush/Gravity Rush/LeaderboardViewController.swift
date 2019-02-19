@@ -33,7 +33,6 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "leaderCell", for: indexPath) as! ViewControllerTableViewCell
         cell.leaderNameLabel.text = leaderNameSortedData[indexPath.row]
         cell.leaderScoreLabel.text = leaderScoreSortedData[indexPath.row]
-        positionData = Array(1...leaderNameSortedData.count)
         cell.position.text = String(positionData[indexPath.row])
         if leaderNameSortedData[indexPath.row] == thisUser{
             cell.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
@@ -98,9 +97,10 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
             }
             
             if self.locationState == "top5"||self.locationState == "top10"{
-                for i in 0..<(self.leaderNameData.count-1){
+                for i in 0...14{
                     self.leaderScoreSortedData.append(self.leaderScoreData[i])
                     self.leaderNameSortedData.append(self.leaderNameData[i])
+                    self.positionData.append(i+1)
                 }
             }
             else if self.locationState == "notTop"{
@@ -108,10 +108,12 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
                 for i in 0...4{
                     self.leaderScoreSortedData.append(self.leaderScoreData[i])
                     self.leaderNameSortedData.append(self.leaderNameData[i])
+                    self.positionData.append(i+1)
                 }
                 for i in (self.myLocation-5)...(self.myLocation+5){
                     self.leaderScoreSortedData.append(self.leaderScoreData[i])
                     self.leaderNameSortedData.append(self.leaderNameData[i])
+                    self.positionData.append(i+1)
                 }
             }
             
