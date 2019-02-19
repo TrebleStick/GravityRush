@@ -66,7 +66,7 @@ def clip(x, min, max) :
 
 for i in range(0,10):
 
-    verts = generatePolygon( ctrX=img_sizeX/2, ctrY=img_sizeY/2, aveRadius=100, irregularity=0.5, spikeyness=0.2, numVerts=12 )
+    verts = generatePolygon( ctrX=img_sizeX/2, ctrY=img_sizeY/2, aveRadius=100, irregularity=0.5, spikeyness=0.3, numVerts=12 )
 
     tupVerts = list(map(tuple,verts))
     im = Image.new('RGBA', img_dimesions, trans)
