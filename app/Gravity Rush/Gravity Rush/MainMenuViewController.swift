@@ -10,6 +10,7 @@ import UIKit
 import SpriteKit
 import GameplayKit
 import CoreBluetooth
+import CoreML
 
 let deviceServiceCBUUID = CBUUID(string: "0x1812")
 let HIDcharCBUUID = CBUUID(string: "6E400003-B5A3-F393-E0A9-E50E24DCCA9E")
@@ -191,14 +192,44 @@ extension MainMenuViewController: CBPeripheralDelegate {
 //            print(byteArray)
             if byteArray.count >= 4{
                 if let stringByte = String(bytes: byteArray[...2], encoding: .utf8) {
-//                    print(stringByte)
-//                    if dataArr.count > 30{
-//                        dataArr.removeFirst()
-//                    }
+                    print("stringByte: \(stringByte) byteCount: \(dataArr.count)")
+                    if dataArr.count > 49{
+                        dataArr.removeFirst()
+                    }
                     if let intVal = Int(stringByte) {
                         dataArr.append(intVal)
                     }
-                    print(dataArr.count)
+                    if dataArr.count == 50 {
+                        let sum = dataArr[..<49].reduce(0, +)
+                        if ( Double(sum) * (1.2 / 48) < Double (dataArr[49])){
+                            print("tap")
+                            NotificationCenter.default.post(name: Notification.Name("newBoop"), object: nil)
+                        }
+                    }
+                    
+                    
+//                    if dataArr.count == 50 {
+//                        print("predicting..")
+//                        let zulu = zmodel()
+//
+//                        guard let inputArr = try? MLMultiArray(shape:[50], dataType:.double) else {
+//                            print("ERROR in MLMultiArray")
+//                            return
+//                        }
+//                        for (i, _) in dataArr.enumerated(){
+//                            inputArr[i] = dataArr[i] as NSNumber
+//                        }
+//                        let zinputArr = zmodelInput(input1: inputArr)
+//                        let predOptions = MLPredictionOptions()
+//                        predOptions.usesCPUOnly = true
+//                        guard let out = try? zulu.prediction(input: zinputArr, options: predOptions) else {
+//                            print("ERROR: prediction failed")
+//                            return
+//                        }
+//                        print(out.output1)
+//                        //                    print(dataArr.count)
+//                    }
+                    
                 } else {
                     print("not a valid UTF-8 sequence")
                 }
@@ -208,5 +239,7 @@ extension MainMenuViewController: CBPeripheralDelegate {
             print("Unhandled Characteristic UUID: \(characteristic.uuid)")
         }
     }
+    
+
     
 }

@@ -29,7 +29,8 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
 //        super.didMove(to: view)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(tapView), name: Notification.Name("newBoop"), object: nil)
+
         //Setup camera
         cam = SKCameraNode()
         self.camera = cam
