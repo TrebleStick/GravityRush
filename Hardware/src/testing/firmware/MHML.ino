@@ -79,6 +79,8 @@ void setup() {
   /* Print Bluefruit information */
   ble.info();
 
+  //ble.setInterCharWriteDelay(5); // 5 ms
+
   /* Change the device name to make it easier to find */
   Serial.println(F("Setting device name to 'GravityRush BLE': "));
   if (! ble.sendCommandCheckOK(F( "AT+GAPDEVNAME=GravityRush BLE" )) ) {
@@ -145,7 +147,7 @@ void setup() {
 void loop() {
   // Read EMG Data
   val = analogRead(EMG_Pin);
-  val = val/1023;                  // scale data
+  //val = val/1023;                  // scale data
   //Serial.println(val);           // print sensor value
 
   // Read Raw accel data
@@ -186,7 +188,7 @@ void loop() {
     Serial.print((char)setting);
   }
 
-  delay(100);
+  delay(50);
 }
 
 // Chain: Read Sensor (AnalogRead) (and accelerometer) -> Send via Bluetooth
