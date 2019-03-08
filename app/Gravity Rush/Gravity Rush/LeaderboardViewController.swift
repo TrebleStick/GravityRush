@@ -23,7 +23,7 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
     var positionData: [Int] = []
     var myLocation = Int()
     var oldScore = Int()
-    let score = 4
+    let score = 80
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return(leaderNameSortedData.count)
