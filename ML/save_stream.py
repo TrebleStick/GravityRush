@@ -4,7 +4,7 @@ import csv
 ser = serial.Serial('COM3', 115200)
 cnt=0
 # create csv file
-with open('EMG_data/ife_wrist_none.csv', 'w') as new_file:
+with open('EMG_data/ife_wrist_none_0.csv', 'w') as new_file:
     csv_writer = csv.writer(new_file)
     emg_0_buffer = []
     emg_1_buffer = []
