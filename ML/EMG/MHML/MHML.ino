@@ -1,13 +1,20 @@
+// If windowing is required uncomment this #define. If not then streaming will be used.
+#define WINDOWING
+
+//If BLE being used uncomment the following
+//#define BLE
 #include <SoftwareSerial.h>
 #include <Arduino.h>
 #include <Wire.h>
-#include "BluefruitConfig.h"
 
 /* The following libraries need to be installed: Adafruit BluefruitLE nRF51; Adafruit LIS3DH; Adafruit Unified Sensor */
+#ifdef BLE
+#include "BluefruitConfig.h"
 #include "Adafruit_BLE.h"
 #include "Adafruit_BluefruitLE_UART.h"
 #include <Adafruit_LIS3DH.h>
 #include <Adafruit_Sensor.h>
+#endif
 
 #define FACTORYRESET_ENABLE         0
 #define MINIMUM_FIRMWARE_VERSION    "0.6.6"
@@ -16,15 +23,14 @@
 //#define SDA                         A4
 //#define SCL                         A5
 #define SAMPLING_WINDOW_HZ           1000
-#define SAMPLING_WINDOW_SIZE         500
+#define SAMPLING_WINDOW_SIZE         400
 
-// If windowing is required uncomment this #define. If not then streaming will be used.
-//#define WINDOWING
+
 
 //int sensorPin = A0;
 float val = 0;
 int setting = 0;
-
+#ifdef BLE
 // Setup software serial
 SoftwareSerial bluefruitSS = SoftwareSerial(BLUEFRUIT_SWUART_TXD_PIN, BLUEFRUIT_SWUART_RXD_PIN);
 
@@ -33,7 +39,7 @@ Adafruit_BluefruitLE_UART ble(bluefruitSS, BLUEFRUIT_UART_MODE_PIN,
 
 // I2C
 Adafruit_LIS3DH lis = Adafruit_LIS3DH();
-
+#endif
 void error(const __FlashStringHelper*err) {
   Serial.println(err);
   while (1);
@@ -41,11 +47,12 @@ void error(const __FlashStringHelper*err) {
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(BLUEFRUIT_UART_MOD_PIN, OUTPUT);
-
   Serial.begin(115200);   // setup hardware serial
   Serial.println(F("GravityRush Firmware"));
   Serial.println(F("------------------------------------------------"));
+  #ifdef BLE
+  pinMode(BLUEFRUIT_UART_MOD_PIN, OUTPUT);
+
 
   // Set module to CMD mode
   Serial.println( F("Switching to CMD mode!") );
@@ -78,8 +85,6 @@ void setup() {
   Serial.println("Requesting Bluefruit info:");
   /* Print Bluefruit information */
   ble.info();
-
-  //ble.setInterCharWriteDelay(5); // 5 ms
 
   /* Change the device name to make it easier to find */
   Serial.println(F("Setting device name to 'GravityRush BLE': "));
@@ -142,6 +147,7 @@ void setup() {
 
   Serial.print("LIS Range = "); Serial.print(2 << lis.getRange());
   Serial.println("G");*/
+  #endif
 }
 
 void loop() {
@@ -156,8 +162,13 @@ void loop() {
 #ifndef WINDOWING
   // Send EMG data via bluetooth in stream mode
   if (val != 0) {
+    #ifdef BLE
     ble.print(val);
     ble.print(" ");
+    #endif
+    #ifndef BLE
+    Serial.print(val);
+    #endif
   }
 #endif
 
@@ -171,7 +182,12 @@ void loop() {
 
   for(int i = 0; i < SAMPLING_WINDOW_SIZE; i++) {
     data[i] = data[i]/1023;
+    #ifdef BLE
     ble.print(data[i]);
+    #endif
+    #ifndef BLE
+    Serial.println(data[i]);
+    #endif
   }
 #endif
 
@@ -183,12 +199,14 @@ void loop() {
   }*/
 
   // Receive data via bluetooth
+  #ifdef BLE
   if (ble.available()) {
     setting = ble.read();
     Serial.print((char)setting);
   }
+  #endif
 
-  delay(50);
+  delay(100);
 }
 
 // Chain: Read Sensor (AnalogRead) (and accelerometer) -> Send via Bluetooth
