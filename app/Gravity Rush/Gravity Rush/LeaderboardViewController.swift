@@ -25,26 +25,26 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
     var leaderNameSortedData: [String] = []
     var positionData: [Int] = []
     var myLocation = Int()
+    var constraints: [NSLayoutConstraint] = []
     let score = 70
     var steve = 2
-    var topConstraint = NSLayoutConstraint()
     
     @IBAction func addFriendButton(_ sender: UIButton) {
         if steve == 3{
             steve = 2
             buttonText.setTitle("+", for: .normal)
             searchFriends.isHidden = true
-            NSLayoutConstraint.deactivate([topConstraint])
-            self.topConstraint = leaderTable.topAnchor.constraint(equalTo: navView.bottomAnchor)
+            let topConstraint = leaderTable.topAnchor.constraint(equalTo: navView.bottomAnchor)
             NSLayoutConstraint.activate([topConstraint])
         }
         else{
             steve = 3
             buttonText.setTitle("-", for: .normal)
             searchFriends.isHidden = false
-            NSLayoutConstraint.deactivate([topConstraint])
-            self.topConstraint = leaderTable.topAnchor.constraint(equalTo: searchFriends.bottomAnchor)
-            NSLayoutConstraint.activate([topConstraint])
+            let oneConstraint = searchFriends.topAnchor.constraint(equalTo: navView.bottomAnchor)
+            let twoConstraint = searchFriends.bottomAnchor.constraint(equalTo: leaderTable.topAnchor)
+            constraints = [oneConstraint,twoConstraint]
+            NSLayoutConstraint.activate(constraints)
         }
         self.leaderTable.reloadData()
     }
@@ -89,10 +89,7 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
         
         super.viewDidLoad()
         searchFriends.isHidden = true
-        self.topConstraint = leaderTable.topAnchor.constraint(equalTo: navView.bottomAnchor)
-        NSLayoutConstraint.activate([topConstraint])
         
-        searchFriends.translatesAutoresizingMaskIntoConstraints = false
         //let topConstraint = leaderTable.topAnchor.constraint(equalTo: navView.bottomAnchor)
         //NSLayoutConstraint.activate([topConstraint])
         //searchFriends.translatesAutoresizingMaskIntoConstraints = false

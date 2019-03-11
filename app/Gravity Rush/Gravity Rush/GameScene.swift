@@ -29,14 +29,16 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
 //        super.didMove(to: view)
+        print("Game scene moved to")
         NotificationCenter.default.addObserver(self, selector: #selector(tapView), name: Notification.Name("newBoop"), object: nil)
 
         //Setup camera
         cam = SKCameraNode()
         self.camera = cam
         self.addChild(cam!)
-        
+        print("camera added")
         //Setup ship
+        
         if let sprite:SKSpriteNode = self.childNode(withName: "Ship") as? SKSpriteNode {
             ship = sprite
             ship.physicsBody?.friction = 0
@@ -46,8 +48,7 @@ class GameScene: SKScene {
                 engine.particleTexture = SKTexture(image: #imageLiteral(resourceName: "spark"))
             } else { print("ERROR: Engine not initiated") }
         } else { print("ERROR: Ship not initiated") }
-        
-       
+ 
 //        ship.constraints?.append(SKConstraint.positionX(SKRange(lowerLimit: -(self.size.width / 2) + (ship.size.width / 2), upperLimit: (self.size.width / 2) - (ship.size.width / 2))))
         
         //Setup score and add to camera
