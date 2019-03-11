@@ -3,7 +3,7 @@
 <eagle version="9.3.0">
 <drawing>
 <settings>
-<setting alwaysvectorfont="yes"/>
+<setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="50" unitdist="mil" unit="mm" style="lines" multiple="1" display="no" altdistance="5" altunitdist="mil" altunit="mm"/>
@@ -157,7 +157,7 @@
 <layer number="255" name="routoute" color="7" fill="1" visible="yes" active="yes"/>
 </layers>
 <board>
-<fusionsync huburn="a.cGVyc29uYWw6dWUyOTBkMjM5" projecturn="a.cGVyc29uYWw6dWUyOTBkMjM5IzIwMTkwMjE5MTc3MzQ1NTgx" f3durn="urn:adsk.wipprod:dm.lineage:8fWTQTV5RmWIqd0VZAsiqQ" pcbguid="3a42ec26-3a26-46cd-8abf-fc278c596440" lastpulledtime="" lastsyncedchangeguid="de925970-1e48-cc5d-e54b-a0e0153084cc"/>
+<fusionsync huburn="a.cGVyc29uYWw6dWUyOTBkMjM5" projecturn="a.cGVyc29uYWw6dWUyOTBkMjM5IzIwMTkwMjE5MTc3MzQ1NTgx" f3durn="urn:adsk.wipprod:dm.lineage:8fWTQTV5RmWIqd0VZAsiqQ" pcbguid="3a42ec26-3a26-46cd-8abf-fc278c596440" lastpulledtime="" lastsyncedchangeguid="c1d21ae6-47e2-c851-1b71-27101511e9e2"/>
 <plain>
 <wire x1="0" y1="3.81" x2="27.92" y2="3.81" width="0" layer="20"/>
 <wire x1="27.92" y1="3.81" x2="27.92" y2="54.28" width="0" layer="20"/>
@@ -182,6 +182,8 @@
 <text x="8.89" y="27.051" size="0.7" layer="25" rot="R180">SCL</text>
 <text x="20.193" y="32.639" size="0.7" layer="25">3V3</text>
 <text x="3.81" y="9.271" size="0.7" layer="25">GND</text>
+<hole x="25.019" y="51.308" drill="2"/>
+<hole x="20.574" y="28.194" drill="2"/>
 </plain>
 <libraries>
 <library name="rcl" urn="urn:adsk.eagle:library:334">
@@ -1920,7 +1922,7 @@ design rules under a new name.</description>
 <attribute name="NAME" x="23.749" y="44.3804" size="1.27" layer="25" rot="R180" align="bottom-center"/>
 </element>
 <element name="U4" library="custom" package="1X8_0.1_PITCH" value="BLUEFRUIT-LE" x="9.271" y="12.954" smashed="yes">
-<attribute name="NAME" x="0.508" y="12.065" size="1.27" layer="27" rot="R90"/>
+<attribute name="NAME" x="4.064" y="11.303" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="TP1" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" package="PAD.02X.02" package3d_urn="urn:adsk.eagle:package:38284/1" value="" x="19.558" y="32.893" smashed="yes"/>
 <element name="TP2" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" package="PAD.02X.02" package3d_urn="urn:adsk.eagle:package:38284/1" value="" x="5.334" y="32.131" smashed="yes"/>
@@ -1962,8 +1964,9 @@ design rules under a new name.</description>
 <wire x1="18.015" y1="32.874" x2="18.161" y2="33.02" width="0.5" layer="1"/>
 <wire x1="18.161" y1="33.02" x2="18.161" y2="34.632" width="0.5" layer="1"/>
 <wire x1="18.161" y1="34.632" x2="18.2" y2="34.671" width="0.5" layer="1"/>
-<wire x1="22.098" y1="9.017" x2="22.098" y2="28.791" width="0.5" layer="16"/>
-<wire x1="22.098" y1="28.791" x2="18.015" y2="32.874" width="0.5" layer="16"/>
+<wire x1="22.86" y1="9.779" x2="22.86" y2="29.21" width="0.5" layer="16"/>
+<wire x1="22.86" y1="29.21" x2="19.196" y2="32.874" width="0.5" layer="16"/>
+<wire x1="19.196" y1="32.874" x2="18.015" y2="32.874" width="0.5" layer="16"/>
 <via x="18.015" y="32.874" extent="1-16" drill="0.35"/>
 <wire x1="7.659" y1="17.018" x2="7.659" y2="16.541" width="0.2" layer="1"/>
 <wire x1="7.659" y1="16.541" x2="7.628" y2="16.51" width="0.2" layer="1"/>
@@ -1991,7 +1994,7 @@ design rules under a new name.</description>
 <wire x1="19.558" y1="32.893" x2="18.034" y2="32.893" width="0.4" layer="1"/>
 <wire x1="18.034" y1="32.893" x2="18.015" y2="32.874" width="0.4" layer="1"/>
 <wire x1="7.659" y1="15.367" x2="7.659" y2="17.018" width="0.5" layer="1"/>
-<wire x1="22.098" y1="9.017" x2="19.558" y2="6.477" width="0.5" layer="16"/>
+<wire x1="22.86" y1="9.779" x2="19.558" y2="6.477" width="0.5" layer="16"/>
 <wire x1="19.558" y1="6.477" x2="9.652" y2="6.477" width="0.5" layer="16"/>
 <wire x1="9.652" y1="6.477" x2="8.763" y2="7.366" width="0.5" layer="16"/>
 <wire x1="8.763" y1="7.366" x2="8.763" y2="8.636" width="0.5" layer="16"/>
@@ -2169,7 +2172,6 @@ design rules under a new name.</description>
 <signal name="MOD">
 <contactref element="U4" pad="MOD"/>
 <contactref element="U1" pad="2"/>
-<wire x1="16.478" y1="31.274" x2="15.7226" y2="31.274" width="0.2" layer="1"/>
 <wire x1="8.636" y1="30.48" x2="1.651" y2="23.495" width="0.2" layer="16"/>
 <wire x1="1.651" y1="12.954" x2="1.651" y2="23.495" width="0.2" layer="16"/>
 <via x="8.636" y="30.48" extent="1-16" drill="0.35"/>
