@@ -2,7 +2,8 @@
 #include <Arduino.h>
 #include <Wire.h>
 
-#define EMG_PIN                      A0
+#define EMG_PIN1                     A0
+#define EMG_PIN2                     A2
 #define STIM_LED                     8
 
 int SAMPLING_WINDOW_HZ = 1000; 
@@ -14,14 +15,15 @@ int SAMPLING_WINDOW_SIZE = 500;
 //int sensorPin = A0;
 float val = 0;
 int setting = 0;
-bool shake = false; 
 
-bool comms = true; 
+boolean shake = false; 
+boolean comms = true; 
 
 void setup() {
 //  pinMode(LED_BUILTIN, OUTPUT);
   pinMode(STIM_LED, OUTPUT);
-  pinMode(EMG_PIN, INPUT); 
+  pinMode(EMG_PIN1, INPUT); 
+  pinMode(EMG_PIN2, INPUT); 
    
   Serial.begin(115200);
   Serial.println("Setting up Serial");    
@@ -56,59 +58,79 @@ void loop() {
     //send EMG
 
     // float data[SAMPLING_WINDOW_SIZE];
-    int data[SAMPLING_WINDOW_SIZE];
+     int emg_data1[SAMPLING_WINDOW_SIZE];
+     int emg_data2[SAMPLING_WINDOW_SIZE];
 
     // float data = analogRead(EMG_PIN)/1023;
     // Serial.println(data); 
-     
+
+    // Stimuli for test subject
+    // READY  
     digitalWrite(STIM_LED, HIGH); 
     delay(250);
     digitalWrite(STIM_LED, LOW);
     delay(250);
+    
+    // SET 
     digitalWrite(STIM_LED, HIGH); 
     delay(250);
     digitalWrite(STIM_LED, LOW); 
     delay(250);
+    
+    // GO!
     digitalWrite(STIM_LED, HIGH);
-    delay(125); 
-    // delay(1000);
-    // digitalWrite(STIM_LED, LOW); 
-    // delay(1000);
-    // digitalWrite(STIM_LED, HIGH);
+    delay(275); 
 
-    // delay(1000); 
+    // Stream data  
+    /* Serial.print(analogRead(EMG_PIN1));
+    Serial.print("\t"); 
+    Serial.println(analogRead(EMG_PIN2)); */ 
+
     for(int i = 0; i < SAMPLING_WINDOW_SIZE; i++) {
-  //    data[i] = analogRead(EMG_Pin);
+      // data[i] = analogRead(EMG_Pin);
+      // data[i] = i;  
       
-      data[i] = analogRead(EMG_PIN);
-      //data[i] = i; 
+      emg_data1[i] = analogRead(EMG_PIN1);
+      emg_data2[i] = analogRead(EMG_PIN2);
       delay(1000/SAMPLING_WINDOW_HZ);
-    }  
+    } 
   
     digitalWrite(STIM_LED, LOW);
-    // delay(5000); */ 
-    
+
     for(int i = 0; i < SAMPLING_WINDOW_SIZE; i++) { 
       if (i < (SAMPLING_WINDOW_SIZE - 1)) {
         // String value = 'v' + ',' + (String)data[i]; 
-        String value = "v,"; 
-        value += (String)data[i];
         // value += (String)i; 
+        
+        String value = "a,"; 
+        value += (String)emg_data1[i];
         Serial.println(value); 
-        delay(10);
+        delay(1);
+        
+        String value = "x,"; 
+        value += (String)emg_data2[i];
+        Serial.println(value); 
+        delay(5); 
       } else {
         // Serial.println('s' + ',' + (String)data[i]); 
-        String value = "s,"; 
-        value += (String)data[i];
         // value += (String)i; 
+        
+        String value = "b,"; 
+        value += (String)emg_data1[i];
         Serial.println(value); 
-        delay(10); 
+        delay(1);
+        
+        String value = "y,"; 
+        value += (String)emg_data2[i];
+        Serial.println(value); 
+        delay(5); 
       }
-    }   
-  }
+    } */
+  } 
   
-  delay(100);
+  // delay(100);
 }
+
 
 bool handShake() { 
   if (Serial.available()) { 
