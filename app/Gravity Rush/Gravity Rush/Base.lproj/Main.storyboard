@@ -20,15 +20,18 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
+                    <connections>
+                        <segue destination="v3r-Xe-aIK" kind="unwind" identifier="unwindMenu" unwindAction="unwindToMenu:" id="khI-eC-tAf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-44" y="27"/>
         </scene>
-        <!--Main Menu View Controller-->
+        <!--main-->
         <scene sceneID="cqu-eT-nLb">
             <objects>
-                <viewController id="VxS-7s-H3S" customClass="MainMenuViewController" customModule="Gravity_Rush" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="main" title="main" id="VxS-7s-H3S" customClass="MainMenuViewController" customModule="Gravity_Rush" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3kn-Ce-IpI" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -236,8 +239,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tmm-gn-Lcv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="v3r-Xe-aIK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-826.39999999999998" y="26.53673163418291"/>
+            <point key="canvasLocation" x="-783" y="84"/>
         </scene>
         <!--Leaderboard View Controller-->
         <scene sceneID="B1E-g2-irf">
@@ -299,7 +303,7 @@
                                             <outlet property="position" destination="P3B-Lz-kBP" id="yNC-tt-Hrv"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addFriendCell" id="sIO-5c-yDj" customClass="ViewControllerSearchFriendCell" customModule="Gravity_Rush" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addFriendCell" id="sIO-5c-yDj" customClass="ViewControllerSearchFriendCell" customModule="Gravity_Rush" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="323" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sIO-5c-yDj" id="EIE-qP-6aN">

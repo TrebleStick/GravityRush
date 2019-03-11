@@ -25,8 +25,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var life1: SKSpriteNode = SKSpriteNode()
     private var life2: SKSpriteNode = SKSpriteNode()
     private var life3: SKSpriteNode = SKSpriteNode()
-
- 
+    private var gameOverState = false
+    
     override func sceneDidLoad() {
 //        addEmitter()
     }
@@ -41,6 +41,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         life1.isHidden = false
         life2.isHidden = false
         life3.isHidden = false
+        gameOverState = false
         
         //Setup camera
         cam = SKCameraNode()
@@ -176,7 +177,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func touchDown(atPoint pos : CGPoint) {
-
+        if gameOverState == true {
+            print("tapped. Now return to main menu" )
+                let menuVC = self.view?.window?.rootViewController as? MainMenuViewController
+                menuVC?.toggleLeaderboard()
+                menuVC?.presentedViewController?.dismiss(animated: true, completion: nil)
+            
+        }
     }
     
     func touchMoved(toPoint pos : CGPoint) {
@@ -234,8 +241,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     func gameOver(){
+        gameOverState = true
         print("game over")
-        
+        print("Display GAME OVER and score")
+        let gameOverLabel = SKLabelNode(fontNamed: "Futura")
+        gameOverLabel.fontSize = 100
+        gameOverLabel.text = "GAME OVER"
+        gameOverLabel.color = UIColor.white
+        gameOverLabel.position = CGPoint(x: 0, y: self.size.height / 3.5)
+        score?.position = CGPoint(x: 0, y: 0)
+        self.addChild(gameOverLabel)
     }
     
     func collisionBetween(ship: SKNode, object: SKNode){
@@ -251,8 +266,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                     ship.removeFromParent()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                        self.gameOver()
+                    }
                 }
-                gameOver()
+
             }
             else{
                 print("collision!")
@@ -264,7 +282,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
                 if lives == 0 {
                     ship.removeFromParent()
-                    gameOver()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        self.gameOver()
+                    }
                 }
             }
             collisionDebounce = true
