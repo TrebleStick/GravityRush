@@ -9,7 +9,7 @@
 import SpriteKit
 //import GameKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
   
     
     private var ship: SKSpriteNode = SKSpriteNode()
@@ -41,7 +41,19 @@ class GameScene: SKScene {
         
         if let sprite:SKSpriteNode = self.childNode(withName: "Ship") as? SKSpriteNode {
             ship = sprite
+            ship.physicsBody = SKPhysicsBody(circleOfRadius: ship.size.height / 2)
+            ship.physicsBody?.isDynamic = true
+            ship.physicsBody?.allowsRotation = true
             ship.physicsBody?.friction = 0
+            ship.physicsBody?.restitution = 0
+            ship.physicsBody?.linearDamping = 0
+            ship.physicsBody?.angularDamping = 0
+            ship.physicsBody?.mass = 0.05
+            ship.physicsBody?.affectedByGravity = true
+            ship.physicsBody?.categoryBitMask = 1
+            ship.physicsBody?.collisionBitMask = 1
+            ship.physicsBody?.fieldBitMask = 1
+            
             if let emitter:SKEmitterNode = ship.childNode(withName: "Engine") as? SKEmitterNode {
                 engine = emitter
 //                engine.particleBirthRate = 250

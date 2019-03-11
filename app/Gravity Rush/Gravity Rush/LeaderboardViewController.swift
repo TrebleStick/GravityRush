@@ -12,9 +12,9 @@ import FirebaseDatabase
 class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
 
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet private weak var leaderTable: UITableView!
     @IBOutlet weak var buttonText: UIButton!
-    @IBOutlet weak var searchFriends: UISearchBar!
     @IBOutlet weak var navView: UIView!
     var ref: DatabaseReference?
     let thisUser = "myUser"
@@ -23,28 +23,31 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
     var leaderScoreData: [String] = []
     var leaderScoreSortedData: [String] = []
     var leaderNameSortedData: [String] = []
+    var searchFriendData: [String] = []
+    var savedFriends: [String] = []
     var positionData: [Int] = []
     var myLocation = Int()
-    var constraints: [NSLayoutConstraint] = []
+    var topConstraint = NSLayoutConstraint()
     let score = 70
     var steve = 2
+    var searching = false
     
     @IBAction func addFriendButton(_ sender: UIButton) {
         if steve == 3{
             steve = 2
             buttonText.setTitle("+", for: .normal)
-            searchFriends.isHidden = true
-            let topConstraint = leaderTable.topAnchor.constraint(equalTo: navView.bottomAnchor)
+            searchBar.isHidden = true
+            NSLayoutConstraint.deactivate([topConstraint])
+            self.topConstraint = leaderTable.topAnchor.constraint(equalTo: navView.bottomAnchor)
             NSLayoutConstraint.activate([topConstraint])
         }
         else{
             steve = 3
             buttonText.setTitle("-", for: .normal)
-            searchFriends.isHidden = false
-            let oneConstraint = searchFriends.topAnchor.constraint(equalTo: navView.bottomAnchor)
-            let twoConstraint = searchFriends.bottomAnchor.constraint(equalTo: leaderTable.topAnchor)
-            constraints = [oneConstraint,twoConstraint]
-            NSLayoutConstraint.activate(constraints)
+            searchBar.isHidden = false
+            NSLayoutConstraint.deactivate([topConstraint])
+            self.topConstraint = searchBar.topAnchor.constraint(equalTo: navView.bottomAnchor)
+            NSLayoutConstraint.activate([topConstraint])
         }
         self.leaderTable.reloadData()
     }
@@ -54,7 +57,12 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
             return(leaderNameSortedData.count)
         }
         else{
-            return 2
+            if searching{
+                return(searchFriendData.count)
+            }
+            else{
+                return(leaderNameData.count)
+            }
         }
     }
     
@@ -78,8 +86,27 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
             return(cell)
         }
         else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "addFriendCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "addFriendCell", for: indexPath) as! ViewControllerSearchFriendCell
+            if searching{
+                cell.friendName.text = searchFriendData[indexPath.row]
+            }
+            else{
+                cell.friendName.text = leaderNameData[indexPath.row]
+            }
             return(cell)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let myIndex = indexPath.row
+        savedFriends = UserDefaults.standard.object(forKey: "savedFriends") as! [String]
+        if searching{
+            savedFriends.append(searchFriendData[myIndex])
+            UserDefaults.standard.set(savedFriends, forKey: "savedFriends")
+        }
+        else{
+            savedFriends.append(leaderNameData[myIndex])
+            UserDefaults.standard.set(savedFriends, forKey: "savedFriends")
         }
     }
     
@@ -88,10 +115,13 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
         //UserDefaults.standard.set(0, forKey: "oldScore")
         
         super.viewDidLoad()
-        searchFriends.isHidden = true
+        let data = UserDefaults.standard.object(forKey: "savedFriends") as? String
+        print("saved", data ?? 0)
         
-        //let topConstraint = leaderTable.topAnchor.constraint(equalTo: navView.bottomAnchor)
-        //NSLayoutConstraint.activate([topConstraint])
+        searchBar.isHidden = true
+        
+        self.topConstraint = leaderTable.topAnchor.constraint(equalTo: navView.bottomAnchor)
+        NSLayoutConstraint.activate([topConstraint])
         //searchFriends.translatesAutoresizingMaskIntoConstraints = false
         
         ref = Database.database().reference()
@@ -260,8 +290,9 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
        //ref.childByAutoId().setValue(["username":"Becky", "HighScore":"2"])
         //update
         
-        
     }
+    
+   
     
     /*
     // MARK: - Navigation
@@ -273,4 +304,18 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
     }
     */
 
+}
+
+extension LeaderboardViewController: UISearchBarDelegate {
+    func searchBar( _ searchBar: UISearchBar, textDidChange searchText: String){
+        searchFriendData = leaderNameData.filter({$0.prefix(searchText.count) == searchText})
+        searching = true
+        self.leaderTable.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searching = false
+        searchBar.text = ""
+        self.leaderTable.reloadData()
+    }
 }
