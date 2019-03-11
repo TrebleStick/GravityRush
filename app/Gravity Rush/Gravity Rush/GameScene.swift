@@ -248,7 +248,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameOverLabel.fontSize = 100
         gameOverLabel.text = "GAME OVER"
         gameOverLabel.color = UIColor.white
-        gameOverLabel.position = CGPoint(x: 0, y: self.size.height / 3.5)
+        gameOverLabel.position = CGPoint(x: 0, y: (self.cam?.position.y)! + 200)
         score?.position = CGPoint(x: 0, y: 0)
         self.addChild(gameOverLabel)
     }
