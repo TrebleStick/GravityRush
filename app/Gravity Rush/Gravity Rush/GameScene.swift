@@ -126,11 +126,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
 //        rotationVal = ship.zRotation
 
-        if Int(arc4random()) % 4 == 0 {
-            if let intScore = Int((self.score?.text!)!) {
-                self.score?.text = String(intScore + 15)
-            }
-        }
+        
+        self.score?.text = "\(Int(ship.position.y)+600)"
         if Int(arc4random()) % 20 == 0 {
             engine.particleBirthRate = 250
             engine.particleTexture = SKTexture(image: #imageLiteral(resourceName: "spark"))
@@ -178,11 +175,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func touchDown(atPoint pos : CGPoint) {
         if gameOverState == true {
+
             print("tapped. Now return to main menu" )
-                let menuVC = self.view?.window?.rootViewController as? MainMenuViewController
-                menuVC?.toggleLeaderboard()
-                menuVC?.presentedViewController?.dismiss(animated: true, completion: nil)
-            
+            let menuVC = self.view?.window?.rootViewController as? MainMenuViewController
+            menuVC?.toggleLeaderboard()
+            menuVC?.presentedViewController?.dismiss(animated: true, completion: nil)
+        
         }
     }
     
@@ -244,13 +242,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameOverState = true
         print("game over")
         print("Display GAME OVER and score")
+        if let old = UserDefaults.standard.object(forKey: "oldScore") as? Int {
+            if let newScore = score?.text {
+                if let newIntScore = Int(newScore){
+                    if newIntScore > old {
+                        //New high score label and fireworks!
+                        //Save new score
+                        let highScoreLabel = SKLabelNode(fontNamed: "Futura")
+                        highScoreLabel.fontSize = 80
+                        highScoreLabel.text = "New High Score!"
+                        highScoreLabel.fontColor = #colorLiteral(red: 1, green: 0.9100329373, blue: 0.001635324071, alpha: 1)
+                        if let explosion = SKEmitterNode(fileNamed: "HighScore") {
+                            explosion.position = CGPoint(x: 0, y: (self.cam?.position.y)! + 300)
+                            addChild(explosion)
+                        }
+                        highScoreLabel.position = CGPoint(x: 0, y: (self.cam?.position.y)! + 300)
+
+                        self.addChild(highScoreLabel)
+                        print("new high score!")
+                    }
+                }
+            }
+        }
         let gameOverLabel = SKLabelNode(fontNamed: "Futura")
         gameOverLabel.fontSize = 100
         gameOverLabel.text = "GAME OVER"
         gameOverLabel.color = UIColor.white
-        gameOverLabel.position = CGPoint(x: 0, y: (self.cam?.position.y)! + 200)
+        gameOverLabel.position = CGPoint(x: 0, y: (self.cam?.position.y)! + 150)
         score?.position = CGPoint(x: 0, y: 0)
         self.addChild(gameOverLabel)
+        
     }
     
     func collisionBetween(ship: SKNode, object: SKNode){

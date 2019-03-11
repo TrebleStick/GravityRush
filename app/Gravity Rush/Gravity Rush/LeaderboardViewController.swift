@@ -112,7 +112,7 @@ class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         
-        //UserDefaults.standard.set(0, forKey: "oldScore")
+        UserDefaults.standard.set(0, forKey: "oldScore")
         
         super.viewDidLoad()
         let data = UserDefaults.standard.object(forKey: "savedFriends") as? String
