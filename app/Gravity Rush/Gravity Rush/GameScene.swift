@@ -41,7 +41,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if let sprite:SKSpriteNode = self.childNode(withName: "Ship") as? SKSpriteNode {
             ship = sprite
-            ship.physicsBody = SKPhysicsBody(circleOfRadius: ship.size.height / 2)
+//            ship.physicsBody = SKPhysicsBody(circleOfRadius: (ship.size.height / 2) - (ship.size.height / 8))
             ship.physicsBody?.isDynamic = true
             ship.physicsBody?.allowsRotation = true
             ship.physicsBody?.friction = 0
