@@ -1,18 +1,26 @@
 import serial
 import time
 import csv
+ser = serial.Serial('COM3', 115200)
 
-ser = serial.Serial('/dev/ttyACM0')
-ser.flushInput()
+# create csv file
+with open('EMG_data/test_data.csv', 'w') as new_file:
+    csv_writer = csv.writer(new_file)
+    emg_0_buffer = []
+    emg_1_buffer = []
+    while True:
+        line = ser.readline()
+        line = (line.decode('utf-8')).strip("\n")
+        line = line.strip("\r")
+        print(line)
+        line = line.split(',')
+        emg_0_buffer.append(line[0])
+        emg_1_buffer.append(line[1])
 
-while True:
-    try:
-        ser_bytes = ser.readline()
-        decoded_bytes = float(ser_bytes[0:len(ser_bytes)-2].decode("utf-8"))
-        print(decoded_bytes)
-        with open("test_data.csv","a") as f:
-            writer = csv.writer(f,delimiter=",")
-            writer.writerow([time.time(),decoded_bytes])
-    except:
-        print("Keyboard Interrupt")
-        break
+        # print(int(line[0]))
+        # print(int(line[1]))
+        if len(emg_0_buffer) > 350 :
+            csv_writer.writerow(emg_0_buffer)
+            csv_writer.writerow(emg_1_buffer)
+            emg_0_buffer = []
+            emg_1_buffer = []
