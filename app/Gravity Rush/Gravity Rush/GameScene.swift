@@ -11,7 +11,7 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
   
-    
+    private var collisionDebounce = false
     private var ship: SKSpriteNode = SKSpriteNode()
 //    private var score: SKLabelNode = SKLabelNode()
     private var score: SKLabelNode?
@@ -21,7 +21,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //    private var offset: CGFloat = 0
     private let rotateRecogniser = UIRotationGestureRecognizer()
     private let tapRecogniser = UITapGestureRecognizer()
-    
+    private var lives = 3
+    private var life1: SKSpriteNode = SKSpriteNode()
+    private var life2: SKSpriteNode = SKSpriteNode()
+    private var life3: SKSpriteNode = SKSpriteNode()
+
  
     override func sceneDidLoad() {
 //        addEmitter()
@@ -29,9 +33,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
 //        super.didMove(to: view)
+        physicsWorld.contactDelegate = self
         print("Game scene moved to")
         NotificationCenter.default.addObserver(self, selector: #selector(tapView), name: Notification.Name("newBoop"), object: nil)
-
+        self.lives = 3
+        
+        life1.isHidden = false
+        life2.isHidden = false
+        life3.isHidden = false
+        
         //Setup camera
         cam = SKCameraNode()
         self.camera = cam
@@ -53,7 +63,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             ship.physicsBody?.categoryBitMask = 1
             ship.physicsBody?.collisionBitMask = 1
             ship.physicsBody?.fieldBitMask = 1
-            
+            ship.physicsBody?.contactTestBitMask = ship.physicsBody?.collisionBitMask ?? 15
             if let emitter:SKEmitterNode = ship.childNode(withName: "Engine") as? SKEmitterNode {
                 engine = emitter
 //                engine.particleBirthRate = 250
@@ -71,6 +81,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         score?.position = CGPoint(x: self.size.width / 2 - 130, y: self.size.height / 2 - 100)
         self.camera?.addChild(score!)
         
+
+        //Set up life counters
+        life1 = SKSpriteNode(imageNamed: "Asset 3@150px_wdith")
+        life1.size.height = self.size.height / 9
+        life1.size.width = (self.size.height / 9 ) * 0.75
+        life1.position = CGPoint(x: -self.size.width / 2 + 100, y: self.size.height / 2 - 80 )
+        life2 = life1.copy() as! SKSpriteNode
+        life2.position = CGPoint(x: -self.size.width / 2 + 100 + life1.size.width , y: self.size.height / 2 - 80 )
+        life3 = life2.copy() as! SKSpriteNode
+        life3.position = CGPoint(x: -self.size.width / 2 + 100 + (2 * life2.size.width) , y: self.size.height / 2 - 80 )
+        
+        self.camera?.addChild(life1)
+        self.camera?.addChild(life2)
+        self.camera?.addChild(life3)
+
         //Set up actions for rotation and tapping
         rotateRecogniser.addTarget(self, action: #selector(GameScene.rotatedView(_:)))
         tapRecogniser.addTarget(self, action: #selector(GameScene.tapView))
@@ -78,6 +103,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         tapRecogniser.numberOfTouchesRequired = 1
         self.view?.addGestureRecognizer(rotateRecogniser)
         self.view?.addGestureRecognizer(tapRecogniser)
+        
     }
 
     
@@ -176,6 +202,78 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
+
+    func didBegin(_ contact: SKPhysicsContact) {
+        guard let nodeA = contact.bodyA.node else { return }
+        guard let nodeB = contact.bodyB.node else { return }
+        
+        if nodeA.name == "Ship" {
+            collisionBetween(ship: nodeA, object: nodeB)
+        } else if nodeB.name == "Ship" {
+            collisionBetween(ship: nodeB, object: nodeA)
+        }
+    }
     
+    func updateLifeCounter(lives: Int){
+        if lives == 0 {
+            life1.isHidden = true
+            life2.isHidden = true
+            life3.isHidden = true
+        } else if lives == 1 {
+            life1.isHidden = false
+            life2.isHidden = true
+            life3.isHidden = true
+        } else if lives == 2 {
+            life1.isHidden = false
+            life2.isHidden = false
+            life3.isHidden = true
+        } else if lives == 3 {
+            life1.isHidden = false
+            life2.isHidden = false
+            life3.isHidden = false
+        }
+    }
+    func gameOver(){
+        print("game over")
+        
+    }
+    
+    func collisionBetween(ship: SKNode, object: SKNode){
+        
+        if collisionDebounce == false {
+            if object.name == "hole" {
+                print("Black hole rip")
+                lives = 0
+                updateLifeCounter(lives: lives)
+                if let explosion = SKEmitterNode(fileNamed: "ShipHole") {
+                    explosion.position = ship.position
+                    addChild(explosion)
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    ship.removeFromParent()
+                }
+                gameOver()
+            }
+            else{
+                print("collision!")
+                lives -= 1
+                updateLifeCounter(lives: lives)
+                if let explosion = SKEmitterNode(fileNamed: "ShipExplosion") {
+                    explosion.position = ship.position
+                    addChild(explosion)
+                }
+                if lives == 0 {
+                    ship.removeFromParent()
+                    gameOver()
+                }
+            }
+            collisionDebounce = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                self.collisionDebounce = false
+            }
+            
+        }
+        
+    }
     
 }
