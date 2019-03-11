@@ -6,8 +6,8 @@
 #define EMG_PIN2                     A2
 #define STIM_LED                     8
 
-int SAMPLING_WINDOW_HZ = 500;
-int SAMPLING_WINDOW_SIZE = 350;
+int SAMPLING_WINDOW_HZ = 1000;
+int SAMPLING_WINDOW_SIZE = 1000;
 
 // If windowing is required uncomment this #define. If not then streaming will be used.
 //#define WINDOWING
