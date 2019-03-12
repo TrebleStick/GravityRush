@@ -24,7 +24,7 @@ class MainMenuViewController: UIViewController{
     var myoPeripheral: CBPeripheral!
     var tempString: String = ""
     var dataArr: [[Double]] = []
-    let alpha = amodel()
+    let alpha = dmodel()
     var flag = false
 
     
@@ -213,17 +213,17 @@ extension MainMenuViewController: CBPeripheralDelegate {
 
 //        print(localArr[..<20])
         
-        guard let inputArr = try? MLMultiArray(shape:[1000,1,2], dataType:.double) else {
+        guard let inputArr = try? MLMultiArray(shape:[100,1,2], dataType:.double) else {
             print("ERROR in MLMultiArray")
             return
         }
         
-        for i in 0..<1000 {
+        for i in 0..<100 {
             //                    inputArr[i] = dataArr[i] as [NSNumber]
             inputArr[[i as NSNumber,0,0]] = localArr[i][0] as NSNumber
             inputArr[[i as NSNumber,0,1]] = localArr[i][1] as NSNumber
         }
-        let ainputArr = amodelInput(input1: inputArr)
+        let ainputArr = dmodelInput(input1: inputArr)
         //                let predOptions = MLPredictionOptions()
         //                predOptions.usesCPUOnly = true
         //                guard let out = try? alpha.prediction(input: ainputArr, options: predOptions) else {
@@ -272,7 +272,7 @@ extension MainMenuViewController: CBPeripheralDelegate {
                                 if (temp0 != 65535) && (temp1 != 65535){
                                     dataArr.append([Double(temp0)/1023, Double(temp1)/1023])
                                 }
-                                if dataArr.count > 1000 {
+                                if dataArr.count > 100 {
                                     dataArr.removeFirst()
                                 }
                             }
@@ -287,7 +287,7 @@ extension MainMenuViewController: CBPeripheralDelegate {
                 tempArray += temptemp
             }
 //            print("end", Int64(Date().timeIntervalSince1970 * 1000))
-            if dataArr.count == 1000 {
+            if dataArr.count == 100 {
 //                print("in count")
                 if flag == false {
                     threadRecurse()
