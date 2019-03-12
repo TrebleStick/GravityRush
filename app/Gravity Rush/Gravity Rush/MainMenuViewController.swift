@@ -11,6 +11,7 @@ import SpriteKit
 import GameplayKit
 import CoreBluetooth
 import CoreML
+import Accelerate
 
 let deviceServiceCBUUID = CBUUID(string: "0x1812")
 let HIDcharCBUUID = CBUUID(string: "6E400003-B5A3-F393-E0A9-E50E24DCCA9E")
@@ -21,7 +22,10 @@ class MainMenuViewController: UIViewController{
 
     var centralManager: CBCentralManager!
     var myoPeripheral: CBPeripheral!
-    var dataArr: [Int] = []
+    var tempString: String = ""
+    var dataArr: [[Double]] = []
+    let alpha = amodel()
+    var flag = false
 
     
     @IBOutlet weak var gravityRushLabel: UILabel!
@@ -87,6 +91,7 @@ class MainMenuViewController: UIViewController{
             settingsView.isHidden = false
             gravityRushLabel.isHidden = true
             leaderBoardContainer.isHidden = true
+
         }
         else {
             gravityRushLabel.isHidden = false
@@ -99,6 +104,9 @@ class MainMenuViewController: UIViewController{
             leaderBoardContainer.isHidden = false
             gravityRushLabel.isHidden = true
             settingsView.isHidden = true
+            NotificationCenter.default.post(name: Notification.Name("reloadLeader"), object: nil)
+
+            
         }
         else {
             gravityRushLabel.isHidden = false
@@ -117,7 +125,7 @@ class MainMenuViewController: UIViewController{
         }
         // .instantiatViewControllerWithIdentifier() returns AnyObject! this must be downcast to utilize it
     @IBAction func unwindToMenu(_ unwindSegue: UIStoryboardSegue) {
-        let sourceViewController = unwindSegue.source
+//        let sourceViewController = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
 
     }
@@ -186,60 +194,107 @@ extension MainMenuViewController: CBPeripheralDelegate {
 //            peripheral.readValue(for: characteristic)
         }
     }
+    func threadRecurse(){
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.predictAction(localArr: self.dataArr)
+            // 2
+            DispatchQueue.main.async { [weak self] in
+                // 3
+                self?.threadRecurse()
+            }
+        }
+    }
+    
+    func predictAction(localArr: [[Double]]){
+//        var dataArr: [[Double]] = []
+
+//        print(localArr[..<20])
+        
+        guard let inputArr = try? MLMultiArray(shape:[1000,1,2], dataType:.double) else {
+            print("ERROR in MLMultiArray")
+            return
+        }
+        
+        for i in 0..<1000 {
+            //                    inputArr[i] = dataArr[i] as [NSNumber]
+            inputArr[[i as NSNumber,0,0]] = localArr[i][0] as NSNumber
+            inputArr[[i as NSNumber,0,1]] = localArr[i][1] as NSNumber
+        }
+        let ainputArr = amodelInput(input1: inputArr)
+        //                let predOptions = MLPredictionOptions()
+        //                predOptions.usesCPUOnly = true
+        //                guard let out = try? alpha.prediction(input: ainputArr, options: predOptions) else {
+        guard let out = try? alpha.prediction(input: ainputArr) else {
+            
+            print("ERROR: prediction failed")
+            return
+        }
+//            print("predicting..")
+//        let action = out.output1
+        let featurePointer = UnsafePointer<Double>(OpaquePointer(out.output1.dataPointer))
+//        func argmax(_ array: UnsafePointer<Double>, count: Int) -> (Int, Double) {
+        var maxValue: Double = 0
+        var maxIndex: vDSP_Length = 0
+        vDSP_maxviD(featurePointer, 1, &maxValue, &maxIndex, vDSP_Length(4))
+        print(Int(maxIndex), maxValue)
+        
+//        let (maxIndex, maxValue) = argmax(featurePointer, 43)
+//        print(out.output1)
+//        print(action)
+        
+        
+    }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         switch characteristic.uuid {
         case HIDcharCBUUID:
             guard let characteristicData = characteristic.value else { return }
-//            print(characteristicData)
+//            print(Int64(Date().timeIntervalSince1970 * 1000))
+//            print("characteristic data", characteristicData)
             let byteArray = [UInt8](characteristicData)
+            var tempArray: [UInt8] = []
 //            print(byteArray)
-            if byteArray.count >= 4{
-                if let stringByte = String(bytes: byteArray[...2], encoding: .utf8) {
-                    print("stringByte: \(stringByte) byteCount: \(dataArr.count)")
-                    if dataArr.count > 49{
-                        dataArr.removeFirst()
-                    }
-                    if let intVal = Int(stringByte) {
-                        dataArr.append(intVal)
-                    }
-//                    if dataArr.count == 50 {
-//                        let sum = dataArr[..<49].reduce(0, +)
-//                        if ( Double(sum) * (1.2 / 48) < Double (dataArr[49])){
-//                            print("tap")
-//                            NotificationCenter.default.post(name: Notification.Name("newBoop"), object: nil)
-//                        }
-//                    }
-                    
-                    
-                    if dataArr.count == 1000 {
-                        print("predicting..")
-//                        let zulu = zmodel()
-                        let alpha = amodel()
-                        
-                        guard let inputArr = try? MLMultiArray(shape:[1000,1,2], dataType:.double) else {
-                            print("ERROR in MLMultiArray")
-                            return
+            tempArray += byteArray
+//            print(tempArray)
+            let tempSplit = tempArray.split(separator: 10)
+//            print(tempSplit)
+            for idx in tempSplit[..<tempSplit.count] {
+//                print(idx)
+                if let tupStr = String(bytes: idx, encoding: .utf8){
+//                    print(tupStr)
+                    var tuple = tupStr.split(separator: ",")
+                    if tuple.count == 2{
+                        if let temp0 = Int(tuple[0]){
+                            if let temp1 = Int(tuple[1]){
+                                if (temp0 != 65535) && (temp1 != 65535){
+                                    dataArr.append([Double(temp0)/1023, Double(temp1)/1023])
+                                }
+                                if dataArr.count > 1000 {
+                                    dataArr.removeFirst()
+                                }
+                            }
+
                         }
-                        for (i, _) in dataArr.enumerated(){
-                            inputArr[i] = dataArr[i] as NSNumber
-                        }
-                        let ainputArr = amodelInput(input1: inputArr)
-                        let predOptions = MLPredictionOptions()
-                        predOptions.usesCPUOnly = true
-                        guard let out = try? alpha.prediction(input: ainputArr, options: predOptions) else {
-                            print("ERROR: prediction failed")
-                            return
-                        }
-                        print(out.output1)
-                        //                    print(dataArr.count)
                     }
-                    
-                } else {
-                    print("not a valid UTF-8 sequence")
+               
                 }
             }
-
+            tempArray = []
+            if let temptemp = tempSplit.last {
+                tempArray += temptemp
+            }
+//            print("end", Int64(Date().timeIntervalSince1970 * 1000))
+            if dataArr.count == 1000 {
+//                print("in count")
+                if flag == false {
+                    threadRecurse()
+                    flag = true
+                }
+            }
+            
         default:
             print("Unhandled Characteristic UUID: \(characteristic.uuid)")
         }

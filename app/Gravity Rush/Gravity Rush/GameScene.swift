@@ -192,6 +192,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print("tapped. Now return to main menu" )
             let menuVC = self.view?.window?.rootViewController as? MainMenuViewController
             menuVC?.toggleLeaderboard()
+            
             menuVC?.presentedViewController?.dismiss(animated: true, completion: nil)
             
         }
@@ -261,8 +262,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let newScore = score?.text {
                 if let newIntScore = Int(newScore){
                     if newIntScore > old {
-                        //New high score label and fireworks!
                         //Save new score
+                        UserDefaults.standard.set(newIntScore, forKey: "oldScore")
+                        //New high score label and fireworks!
                         let highScoreLabel = SKLabelNode(fontNamed: "Futura")
                         highScoreLabel.fontSize = 80
                         highScoreLabel.text = "New High Score!"
@@ -297,8 +299,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let newScore = score?.text {
                 if let newIntScore = Int(newScore){
                     if newIntScore > old {
-                        //New high score label and fireworks!
                         //Save new score
+                        UserDefaults.standard.set(newIntScore, forKey: "oldScore")
+                        //New high score label and fireworks!
                         let highScoreLabel = SKLabelNode(fontNamed: "Futura")
                         highScoreLabel.fontSize = 80
                         highScoreLabel.text = "New High Score!"
