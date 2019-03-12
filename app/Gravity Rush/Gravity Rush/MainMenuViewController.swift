@@ -203,36 +203,37 @@ extension MainMenuViewController: CBPeripheralDelegate {
                     if let intVal = Int(stringByte) {
                         dataArr.append(intVal)
                     }
-                    if dataArr.count == 50 {
-                        let sum = dataArr[..<49].reduce(0, +)
-                        if ( Double(sum) * (1.2 / 48) < Double (dataArr[49])){
-                            print("tap")
-                            NotificationCenter.default.post(name: Notification.Name("newBoop"), object: nil)
-                        }
-                    }
-                    
-                    
 //                    if dataArr.count == 50 {
-//                        print("predicting..")
-//                        let zulu = zmodel()
-//
-//                        guard let inputArr = try? MLMultiArray(shape:[50], dataType:.double) else {
-//                            print("ERROR in MLMultiArray")
-//                            return
+//                        let sum = dataArr[..<49].reduce(0, +)
+//                        if ( Double(sum) * (1.2 / 48) < Double (dataArr[49])){
+//                            print("tap")
+//                            NotificationCenter.default.post(name: Notification.Name("newBoop"), object: nil)
 //                        }
-//                        for (i, _) in dataArr.enumerated(){
-//                            inputArr[i] = dataArr[i] as NSNumber
-//                        }
-//                        let zinputArr = zmodelInput(input1: inputArr)
-//                        let predOptions = MLPredictionOptions()
-//                        predOptions.usesCPUOnly = true
-//                        guard let out = try? zulu.prediction(input: zinputArr, options: predOptions) else {
-//                            print("ERROR: prediction failed")
-//                            return
-//                        }
-//                        print(out.output1)
-//                        //                    print(dataArr.count)
 //                    }
+                    
+                    
+                    if dataArr.count == 1000 {
+                        print("predicting..")
+//                        let zulu = zmodel()
+                        let alpha = amodel()
+                        
+                        guard let inputArr = try? MLMultiArray(shape:[1000,1,2], dataType:.double) else {
+                            print("ERROR in MLMultiArray")
+                            return
+                        }
+                        for (i, _) in dataArr.enumerated(){
+                            inputArr[i] = dataArr[i] as NSNumber
+                        }
+                        let ainputArr = amodelInput(input1: inputArr)
+                        let predOptions = MLPredictionOptions()
+                        predOptions.usesCPUOnly = true
+                        guard let out = try? alpha.prediction(input: ainputArr, options: predOptions) else {
+                            print("ERROR: prediction failed")
+                            return
+                        }
+                        print(out.output1)
+                        //                    print(dataArr.count)
+                    }
                     
                 } else {
                     print("not a valid UTF-8 sequence")

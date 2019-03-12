@@ -11,6 +11,7 @@
 		3703159B221B3CD50017FD79 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703159A221B3CD50017FD79 /* MainMenuViewController.swift */; };
 		3703159D221B3D520017FD79 /* MainMenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3703159C221B3D520017FD79 /* MainMenuScene.sks */; };
 		37113AF4221CD41F008E6451 /* zmodel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 37113AF3221CD41E008E6451 /* zmodel.mlmodel */; };
+		3714C6602237BD1C00E2320D /* amodel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3714C65F2237BD1B00E2320D /* amodel.mlmodel */; };
 		3733418D223698A60064570E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3733418C223698A60064570E /* GameScene.sks */; };
 		37430DF122020D6900C8BD42 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37430DF022020D6900C8BD42 /* GameScene.swift */; };
 		374661D2220086CE0021FD31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374661D1220086CE0021FD31 /* AppDelegate.swift */; };
@@ -40,6 +41,7 @@
 		3703159A221B3CD50017FD79 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		3703159C221B3D520017FD79 /* MainMenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenuScene.sks; sourceTree = "<group>"; };
 		37113AF3221CD41E008E6451 /* zmodel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = zmodel.mlmodel; sourceTree = "<group>"; };
+		3714C65F2237BD1B00E2320D /* amodel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = amodel.mlmodel; sourceTree = "<group>"; };
 		3733418C223698A60064570E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		37430DF022020D6900C8BD42 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		374661CE220086CE0021FD31 /* Gravity Rush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gravity Rush.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +111,7 @@
 		374661D0220086CE0021FD31 /* Gravity Rush */ = {
 			isa = PBXGroup;
 			children = (
+				3714C65F2237BD1B00E2320D /* amodel.mlmodel */,
 				374661EF2200AB9F0021FD31 /* Magic.sks */,
 				37113AF3221CD41E008E6451 /* zmodel.mlmodel */,
 				374661D1220086CE0021FD31 /* AppDelegate.swift */,
@@ -288,6 +291,7 @@
 				37113AF4221CD41F008E6451 /* zmodel.mlmodel in Sources */,
 				37757D942236B77C00FD28AE /* ViewControllerSearchFriendCell.swift in Sources */,
 				37784A9B221B46AE006C52D4 /* extension.swift in Sources */,
+				3714C6602237BD1C00E2320D /* amodel.mlmodel in Sources */,
 				374661DA220086CE0021FD31 /* GameViewController.swift in Sources */,
 				37430DF122020D6900C8BD42 /* GameScene.swift in Sources */,
 				37F1A7EC2232BDAE00BEF423 /* addFriendsCell.swift in Sources */,
