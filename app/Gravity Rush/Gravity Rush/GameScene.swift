@@ -5,6 +5,7 @@
 //  Created by Ryan Armiger on 29/01/2019.
 //  Copyright © 2019 Ryan Armiger. All rights reserved.
 //
+// 30_300 is highest pos.
 
 import SpriteKit
 //import GameKit
@@ -26,6 +27,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var life2: SKSpriteNode = SKSpriteNode()
     private var life3: SKSpriteNode = SKSpriteNode()
     private var gameOverState = false
+    private var gameWonState = false
     
     override func sceneDidLoad() {
 //        addEmitter()
@@ -42,6 +44,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         life2.isHidden = false
         life3.isHidden = false
         gameOverState = false
+        gameWonState = false
         
         //Setup camera
         cam = SKCameraNode()
@@ -125,7 +128,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             ship.physicsBody?.velocity.dx = 200
         }
 //        rotationVal = ship.zRotation
-
+        if ship.position.y > 30300 {
+            gameWon()
+        }
         
         self.score?.text = "\(Int(ship.position.y)+600)"
         if Int(arc4random()) % 20 == 0 {
@@ -182,6 +187,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             menuVC?.presentedViewController?.dismiss(animated: true, completion: nil)
         
         }
+        if gameWonState == true {
+            
+            print("tapped. Now return to main menu" )
+            let menuVC = self.view?.window?.rootViewController as? MainMenuViewController
+            menuVC?.toggleLeaderboard()
+            menuVC?.presentedViewController?.dismiss(animated: true, completion: nil)
+            
+        }
+        
+        
     }
     
     func touchMoved(toPoint pos : CGPoint) {
@@ -274,6 +289,46 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    func gameWon(){
+        gameWonState = true
+        print("game won")
+        print("Display GAME WON and score")
+        if let old = UserDefaults.standard.object(forKey: "oldScore") as? Int {
+            if let newScore = score?.text {
+                if let newIntScore = Int(newScore){
+                    if newIntScore > old {
+                        //New high score label and fireworks!
+                        //Save new score
+                        let highScoreLabel = SKLabelNode(fontNamed: "Futura")
+                        highScoreLabel.fontSize = 80
+                        highScoreLabel.text = "New High Score!"
+                        highScoreLabel.fontColor = #colorLiteral(red: 1, green: 0.9100329373, blue: 0.001635324071, alpha: 1)
+                        if let explosion = SKEmitterNode(fileNamed: "HighScore") {
+                            explosion.position = CGPoint(x: 0, y: (self.cam?.position.y)! + 300)
+                            addChild(explosion)
+                        }
+                        highScoreLabel.position = CGPoint(x: 0, y: (self.cam?.position.y)! + 300)
+                        
+                        self.addChild(highScoreLabel)
+                        print("new high score!")
+                    }
+                }
+            }
+        }
+        let gameOverLabel = SKLabelNode(fontNamed: "Futura")
+        gameOverLabel.fontSize = 100
+        gameOverLabel.text = "GAME COMPLETE"
+        gameOverLabel.color = UIColor.white
+        gameOverLabel.position = CGPoint(x: 0, y: (self.cam?.position.y)! + 150)
+        score?.position = CGPoint(x: 0, y: 0)
+        if let fireworks = SKEmitterNode(fileNamed: "GameWon") {
+            fireworks.position = CGPoint(x: 0, y: (self.cam?.position.y)! )
+            addChild(fireworks)
+        }
+        self.addChild(gameOverLabel)
+        
+    }
+    
     func collisionBetween(ship: SKNode, object: SKNode){
         
         if collisionDebounce == false {
@@ -287,7 +342,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                     ship.removeFromParent()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self.gameOver()
                     }
                 }
@@ -303,7 +358,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
                 if lives == 0 {
                     ship.removeFromParent()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self.gameOver()
                     }
                 }
