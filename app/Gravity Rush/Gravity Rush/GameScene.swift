@@ -21,6 +21,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //    private var rotationVal: CGFloat = 0
 //    private var offset: CGFloat = 0
     private let rotateRecogniser = UIRotationGestureRecognizer()
+    private let swipeRecogniser = UISwipeGestureRecognizer()
     private let tapRecogniser = UITapGestureRecognizer()
     private var lives = 3
     private var life1: SKSpriteNode = SKSpriteNode()
@@ -38,6 +39,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
         print("Game scene moved to")
         NotificationCenter.default.addObserver(self, selector: #selector(tapView), name: Notification.Name("newBoop"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(rotateLeft), name: Notification.Name("left"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(rotateRight), name: Notification.Name("right"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(tapView), name: Notification.Name("both"), object: nil)
+
+
+
         self.lives = 3
         
         life1.isHidden = false
@@ -102,11 +109,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         //Set up actions for rotation and tapping
         rotateRecogniser.addTarget(self, action: #selector(GameScene.rotatedView(_:)))
+        swipeRecogniser.addTarget(self, action: #selector(GameScene.brake))
+        swipeRecogniser.direction = UISwipeGestureRecognizer.Direction.down
+
         tapRecogniser.addTarget(self, action: #selector(GameScene.tapView))
         tapRecogniser.numberOfTapsRequired = 1
         tapRecogniser.numberOfTouchesRequired = 1
         self.view?.addGestureRecognizer(rotateRecogniser)
         self.view?.addGestureRecognizer(tapRecogniser)
+        self.view?.addGestureRecognizer(swipeRecogniser)
         
     }
 
@@ -148,19 +159,59 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             ship.position.x = -(self.size.width / 2) + (ship.size.width / 2)
         }
     }
-    
+    @objc func brake(_ recognizer: UISwipeGestureRecognizer){
+        print("in swipe")
+        if recognizer.direction == UISwipeGestureRecognizer.Direction.down{
+            print("down")
+            let xVec: CGFloat = sin(ship.zRotation) * 50
+            let yVec: CGFloat = cos(ship.zRotation) * -50
+            ship.physicsBody?.applyForce(CGVector(dx: xVec, dy: yVec))
+            
+            ship.physicsBody?.angularVelocity = 0
+        }
+//        engine.particleBirthRate = 500
+//        engine.particleTexture = SKTexture(image: #imageLiteral(resourceName: "bokeh"))
+        //        let xVec: CGFloat = sin(ship.zRotation) * -200
+        //        let yVec: CGFloat = cos(ship.zRotation) * 200
+        //        ship.physicsBody?.applyForce(CGVector(dx: xVec, dy: yVec))
+
+    }
     
 
     @objc func tapView(){
 //        print("Tapped")
         engine.particleBirthRate = 500
         engine.particleTexture = SKTexture(image: #imageLiteral(resourceName: "bokeh"))
-        let xVec: CGFloat = sin(ship.zRotation) * -200
-        let yVec: CGFloat = cos(ship.zRotation) * 200
+//        let xVec: CGFloat = sin(ship.zRotation) * -200
+//        let yVec: CGFloat = cos(ship.zRotation) * 200
+//        ship.physicsBody?.applyForce(CGVector(dx: xVec, dy: yVec))
+        let xVec: CGFloat = sin(ship.zRotation) * -50
+        let yVec: CGFloat = cos(ship.zRotation) * 50
         ship.physicsBody?.applyForce(CGVector(dx: xVec, dy: yVec))
+
         ship.physicsBody?.angularVelocity = 0
 
     }
+    
+    @objc func rotateLeft(){
+        for i in 0...4 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) { // Change `2.0` to the desired number of seconds.
+
+                self.ship.zRotation += 0.1
+            }
+        }
+
+    }
+    @objc func rotateRight(){
+        for i in 0...4 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) { // Change `2.0` to the desired number of seconds.
+
+                self.ship.zRotation -= 0.1
+            }
+            
+        }
+    }
+    
     
     @objc func rotatedView(_ sender: UIRotationGestureRecognizer){
         if sender.state == .began {

@@ -24,9 +24,11 @@ class MainMenuViewController: UIViewController{
     var myoPeripheral: CBPeripheral!
     var tempString: String = ""
     var dataArr: [[Double]] = []
-    let alpha = dmodel()
+    let alpha = bmodel()
     var flag = false
-
+    private var actionWindow = [0,0]
+    private var countWindow = 0
+    private var action = [0,0,0,0]
     
     @IBOutlet weak var gravityRushLabel: UILabel!
     @IBOutlet weak var leaderBoardContainer: UIView!
@@ -203,27 +205,32 @@ extension MainMenuViewController: CBPeripheralDelegate {
             // 2
             DispatchQueue.main.async { [weak self] in
                 // 3
+                self?.countWindow += 1
+                if self?.countWindow ?? 0 > 30 {
+                    self?.startAction()
+                }
                 self?.threadRecurse()
             }
         }
     }
     
     func predictAction(localArr: [[Double]]){
+        
 //        var dataArr: [[Double]] = []
 
 //        print(localArr[..<20])
         
-        guard let inputArr = try? MLMultiArray(shape:[100,1,2], dataType:.double) else {
+        guard let inputArr = try? MLMultiArray(shape:[40,1,2], dataType:.double) else {
             print("ERROR in MLMultiArray")
             return
         }
         
-        for i in 0..<100 {
+        for i in 0..<40 {
             //                    inputArr[i] = dataArr[i] as [NSNumber]
             inputArr[[i as NSNumber,0,0]] = localArr[i][0] as NSNumber
             inputArr[[i as NSNumber,0,1]] = localArr[i][1] as NSNumber
         }
-        let ainputArr = dmodelInput(input1: inputArr)
+        let ainputArr = bmodelInput(input1: inputArr)
         //                let predOptions = MLPredictionOptions()
         //                predOptions.usesCPUOnly = true
         //                guard let out = try? alpha.prediction(input: ainputArr, options: predOptions) else {
@@ -239,13 +246,35 @@ extension MainMenuViewController: CBPeripheralDelegate {
         var maxValue: Double = 0
         var maxIndex: vDSP_Length = 0
         vDSP_maxviD(featurePointer, 1, &maxValue, &maxIndex, vDSP_Length(4))
-        print(Int(maxIndex), maxValue)
-        
+//        print(Int(maxIndex), maxValue)
+        let actionVal = Int(maxIndex)
+        action[actionVal] += 1
 //        let (maxIndex, maxValue) = argmax(featurePointer, 43)
 //        print(out.output1)
 //        print(action)
+
+    }
+    
+    func startAction(){
         
-        
+        if action[0] > 15 {
+            print("none \(action)")
+        } else if action[1] > 29 {
+            print("left \(action)")
+            NotificationCenter.default.post(name: Notification.Name("left"), object: nil)
+            
+        } else if action[2] > 5 {
+            print("right \(action)")
+            NotificationCenter.default.post(name: Notification.Name("right"), object: nil)
+            
+        } else if action[3] > 5{
+            print("both \(action)")
+//            NotificationCenter.default.post(name: Notification.Name("both"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name("right"), object: nil)
+
+        }
+        action = [0,0,0,0]
+        countWindow = 0
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
@@ -272,7 +301,7 @@ extension MainMenuViewController: CBPeripheralDelegate {
                                 if (temp0 != 65535) && (temp1 != 65535){
                                     dataArr.append([Double(temp0)/1023, Double(temp1)/1023])
                                 }
-                                if dataArr.count > 100 {
+                                if dataArr.count > 40 {
                                     dataArr.removeFirst()
                                 }
                             }
@@ -286,8 +315,62 @@ extension MainMenuViewController: CBPeripheralDelegate {
             if let temptemp = tempSplit.last {
                 tempArray += temptemp
             }
-//            print("end", Int64(Date().timeIntervalSince1970 * 1000))
-            if dataArr.count == 100 {
+            
+//            if dataArr.count == 50 {
+//                countWindow += 1
+//                var sum0: Double = 0
+//                var sum1: Double = 0
+//                for i in dataArr {
+//                    sum0 += i[0]
+//                    sum1 += i[1]
+//                }
+////                let sum0 = (dataArr[..<49][0]).reduce(0, +)
+////                let sum1 = (dataArr[..<49][1]).reduce(0, +)
+////                print( Double(sum0) * (1.2 / 48))
+////                print( Double(sum1) * (1.2 / 48))
+////                print(dataArr[49][0])
+////                print(dataArr[49][1])
+//                var left = 0
+//                var right = 0
+////                print("-----------")
+//                if ( Double(sum0) * (1.5 / 48) < Double (dataArr[49][0])){
+////                    print("sensor 0 high")
+//                    actionWindow[0] += 1
+////                    NotificationCenter.default.post(name: Notification.Name("newBoop"), object: nil)
+//                }
+//                if ( Double(sum1) * (1.5 / 48) < Double (dataArr[49][1])){
+////                    print("sensor 1 high")
+//                    actionWindow[1] += 1
+//                    //                    NotificationCenter.default.post(name: Notification.Name("newBoop"), object: nil)
+//                }
+////                print(left, right)
+//                if countWindow >= 25 {
+//                    if (actionWindow[0] + actionWindow[1]) < 20 {
+//                        print("none")
+//                    }
+//                    else if actionWindow[1] > actionWindow[0] + 5 {
+//                        NotificationCenter.default.post(name: Notification.Name("right"), object: nil)
+//                        print("right")
+//                    }
+//                    else if actionWindow[0] > actionWindow[1] + 10 {
+//                        NotificationCenter.default.post(name: Notification.Name("left"), object: nil)
+//
+//                        print("left")
+//
+//                    } else if (actionWindow[0] + actionWindow[1]) > 15 {
+//                        NotificationCenter.default.post(name: Notification.Name("both"), object: nil)
+//
+//                        print("both")
+//                    } else {
+//                        print("none")
+//                    }
+//                    countWindow = 0
+//                    actionWindow = [0,0]
+//                }
+//            }
+            
+////            print("end", Int64(Date().timeIntervalSince1970 * 1000))
+            if dataArr.count == 40 {
 //                print("in count")
                 if flag == false {
                     threadRecurse()
