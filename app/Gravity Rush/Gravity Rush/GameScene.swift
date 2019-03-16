@@ -163,8 +163,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         print("in swipe")
         if recognizer.direction == UISwipeGestureRecognizer.Direction.down{
             print("down")
-            let xVec: CGFloat = sin(ship.zRotation) * 50
-            let yVec: CGFloat = cos(ship.zRotation) * -50
+            let xVec: CGFloat = sin(ship.zRotation) * 150
+            let yVec: CGFloat = cos(ship.zRotation) * -150
             ship.physicsBody?.applyForce(CGVector(dx: xVec, dy: yVec))
             
             ship.physicsBody?.angularVelocity = 0
@@ -185,8 +185,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        let xVec: CGFloat = sin(ship.zRotation) * -200
 //        let yVec: CGFloat = cos(ship.zRotation) * 200
 //        ship.physicsBody?.applyForce(CGVector(dx: xVec, dy: yVec))
-        let xVec: CGFloat = sin(ship.zRotation) * -50
-        let yVec: CGFloat = cos(ship.zRotation) * 50
+        let xVec: CGFloat = sin(ship.zRotation) * -100
+        let yVec: CGFloat = cos(ship.zRotation) * 100
         ship.physicsBody?.applyForce(CGVector(dx: xVec, dy: yVec))
 
         ship.physicsBody?.angularVelocity = 0
