@@ -35,7 +35,7 @@ class GameViewController: UIViewController {
                     print("scene presented")
                     view.ignoresSiblingOrder = true
 //                    view.showsDrawCount = true
-//                    view.showsFPS = true
+                    view.showsFPS = true
 //                    view.showsNodeCount = true
                 }
             }
