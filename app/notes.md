@@ -3,18 +3,18 @@
 |-------------------|
 |X| Randomly generate asteroid size/shape |
 |X| Randomly generate black hole size/shape |
-|| Bluetooth input |
-|| Movement of ship |
-|| Generation of chunked levels |
-|| High score calculated after each attempt|
-|| Physics of the black hoes and astroid collision |
+|X| Bluetooth input |
+|X| Movement of ship |
+|X| Generation of chunked levels |
+|X| High score calculated after each attempt|
+|X| Physics of the black holes and astroid collision |
 
 ### Next Priority for well rounded solution
 |Tick|        TODO    |
 |-------------------|
-|| Have varying difficulty on level chunks|
+|X| Have varying difficulty on level chunks|
 || Coin/points collection for leaderboards as well as general high score (maybe player level) |
-|| Animations on black holes as you go near them|
+|X| Animations on black holes as you go near them|
 
 ### Stretch goals
 |Tick|        TODO    |
